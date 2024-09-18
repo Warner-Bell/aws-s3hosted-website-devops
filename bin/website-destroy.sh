@@ -50,15 +50,8 @@ else
     echo "No matching resource record sets found to delete."
 fi
 
-# Delete CloudFormation stacks
-delete_stack_and_wait "${S3_POLICIES_STACK}"
-delete_stack_and_wait "${DYNAMODB_STACK}"
-delete_stack_and_wait "${CLOUDFRONT_STACK}"
-delete_stack_and_wait "${S3_BUCKETS_STACK}"
 
-echo "All operations completed successfully. (S3 Buckets remain!)"
-
-# Function to safely empty an S3 bucket
+## Function to safely empty an S3 bucket
 # empty_s3_bucket() {
 #     local bucket_name=$1
 #     if aws s3 ls "s3://${bucket_name}" &>/dev/null; then
@@ -73,10 +66,21 @@ echo "All operations completed successfully. (S3 Buckets remain!)"
 #     fi
 # }
 
-# Empty S3 buckets
+##Empty S3 buckets
 # empty_s3_bucket "${SITE_BUCKET_NAME}"
 # empty_s3_bucket "${WWW_BUCKET_NAME}"
 # empty_s3_bucket "${LOGS_BUCKET_NAME}"
 
-#echo "All operations completed successfully. (S3 Buckets remain but have been emptied if they existed!)"
+# echo "All operations completed successfully. (S3 Buckets remain but have been emptied if they existed!)"
+
+
+# Delete CloudFormation stacks
+delete_stack_and_wait "${S3_POLICIES_STACK}"
+delete_stack_and_wait "${DYNAMODB_STACK}"
+delete_stack_and_wait "${CLOUDFRONT_STACK}"
+delete_stack_and_wait "${S3_BUCKETS_STACK}"
+
+echo "All operations completed successfully. (S3 Buckets remain!)"
+
+
 
