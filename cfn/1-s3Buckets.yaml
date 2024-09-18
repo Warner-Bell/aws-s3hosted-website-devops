@@ -1,0 +1,123 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'S3Website S3 Buckets.'
+
+Parameters:
+  SiteBucketName:
+    Type: String
+    Description: Name for the main website content bucket
+  WWWBucketName:
+    Type: String
+    Description: Name for the www subdomain redirect bucket
+  LogsBucketName:
+    Type: String
+    Description: Name for the bucket to store access logs
+  DomainName:
+    Type: String
+    Description: Your custom domain name (e.g., example.com)
+  TagKey:
+    Type: String
+    Description: Key for resource tagging
+  TagValue:
+    Type: String
+    Description: Value for resource tagging
+
+Resources:
+  SiteBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref SiteBucketName
+      OwnershipControls:
+        Rules:
+          - ObjectOwnership: BucketOwnerPreferred
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: false
+        BlockPublicPolicy: false
+        IgnorePublicAcls: false
+        RestrictPublicBuckets: false
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: error.html
+      LoggingConfiguration:
+        DestinationBucketName: !Ref LogsBucket
+        LogFilePrefix: !Sub 'AccessLogs/${SiteBucketName}/'
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      Tags:
+        - Key: !Ref TagKey
+          Value: !Ref TagValue
+    DeletionPolicy: Retain
+
+
+  WWWBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref WWWBucketName
+      OwnershipControls:
+        Rules:
+          - ObjectOwnership: BucketOwnerPreferred
+      WebsiteConfiguration:
+        RedirectAllRequestsTo:
+          HostName: !Ref DomainName
+          Protocol: https
+      LoggingConfiguration:
+        DestinationBucketName: !Ref LogsBucket
+        LogFilePrefix: !Sub 'WWWAccessLogs/${WWWBucketName}/'
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      Tags:
+        - Key: !Ref TagKey
+          Value: !Ref TagValue
+    DeletionPolicy: Retain
+
+
+  LogsBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref LogsBucketName
+      OwnershipControls:
+        Rules:
+          - ObjectOwnership: BucketOwnerPreferred
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      LifecycleConfiguration:
+        Rules:
+          - Id: DeleteAfter60Days
+            Status: Enabled
+            ExpirationInDays: 60
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      Tags:
+        - Key: !Ref TagKey
+          Value: !Ref TagValue
+    DeletionPolicy: Retain
+
+
+Outputs:
+  WebsiteURL:
+    Value: !GetAtt SiteBucket.WebsiteURL
+    Description: URL for website hosted on S3
+  S3BucketSecureURL:
+    Value: !Sub 'https://${SiteBucket.RegionalDomainName}'
+    Description: Name of S3 bucket to hold website content
+  WWWRedirectURL:
+    Value: !GetAtt WWWBucket.WebsiteURL
+    Description: URL for www redirect bucket
+  SiteBucketName:
+    Value: !Ref SiteBucket
+    Description: Name of the main website bucket
+  WWWBucketName:
+    Value: !Ref WWWBucket
+    Description: Name of the www redirect bucket
+  LogsBucketName:
+    Value: !Ref LogsBucket
+    Description: Name of the logs bucket
+

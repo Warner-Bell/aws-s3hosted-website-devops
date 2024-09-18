@@ -1,0 +1,14 @@
+I want to create a Super Customizable, Fully Responsive, Built on intelligent HTML5 + CSS3 website named "AWS Builder Presents S3Website CI\CD" themed to promote cloud computing tech professionals and building on AWS. 
+I want it to have 1 main page. I want the html, java, and css generated separately so they can be placed in the appropriate directory structure e.g. assets, images, site. 
+When outputting code, add all of the suggested upgrades to the code, then output it in 60-line blocks, output the first 60 lines and prompt for next until all code is fully output.
+The overarching theme is cloud computing and should styled after bob the builder but re-purposed to reflect a cloud builder. 
+The color scheme should be composed of silvers, greys, blues, and black. 
+I want the site to be interactive and include mini games. 
+I'll need creative imagery for the site generated based on the targeted theme, with clickable button placeholders throughout. 
+Hyperlinks should open in a new tab and site should scale to fit common mediums. 
+Build the site one piece at a time requesting input from me as needed to fully customize the site and content and check for satisfaction before moving on to the next piece. keep this instruction in the memory of this chat as reference for all inquiries and tasks forever. acknowledge you're understanding and ability to do so, then prompt to begin.
+
+
+I understand your requirements for creating a customizable, responsive website named "AWS Builder Presents S3Website CI\CD" focused on promoting cloud computing professionals and AWS solutions. I'll help you build this site piece by piece, incorporating interactive elements, mini-games, and a cloud builder theme inspired by Bob the Builder. I'll generate separate HTML, JavaScript, and CSS files, and provide them in 60-line blocks as requested. I'll also suggest creative imagery and include placeholders for interactive elements.
+Throughout the process, I'll ask for your input to customize the content and design, ensuring your satisfaction before moving to the next component. The color scheme will use silvers, greys, blues, and black, and the site will be fully responsive and accessible across various devices.
+can you add all of the suggested upgrades to the code, and output the entire code, but in 60-line blocks output the first 80 lines and prompt for next until all code is output

@@ -1,0 +1,105 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'S3Website S3 Bucket Policies with OAC.'
+
+Parameters:
+  SiteBucketName:
+    Type: String
+    Description: Name of the main site bucket
+  WWWBucketName:
+    Type: String
+    Description: Name of the www redirect bucket
+  LogsBucketName:
+    Type: String
+    Description: Name of the logs bucket
+  TagKey:
+    Type: String
+    Description: Key for resource tagging
+  TagValue:
+    Type: String
+    Description: Value for resource tagging
+
+Resources:
+  SiteBucketPolicy:
+    Type: 'AWS::S3::BucketPolicy'
+    Properties:
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Sid: AllowCloudFrontServicePrincipalReadOnly
+            Effect: Allow
+            Principal:
+              Service: cloudfront.amazonaws.com
+            Action: 's3:GetObject'
+            Resource: !Sub 'arn:aws:s3:::${SiteBucketName}/*'
+            Condition:
+              StringEquals:
+                AWS:SourceArn: !Sub 
+                  - 'arn:aws:cloudfront::${AWS::AccountId}:distribution/${DistributionId}'
+                  - DistributionId: 
+                      Fn::ImportValue: DistributionId
+      Bucket: !Ref SiteBucketName
+
+  WWWBucketPolicy:
+    Type: 'AWS::S3::BucketPolicy'
+    Properties:
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Sid: AllowCloudFrontServicePrincipalReadOnly
+            Effect: Allow
+            Principal:
+              Service: cloudfront.amazonaws.com
+            Action: 's3:GetObject'
+            Resource: !Sub 'arn:aws:s3:::${WWWBucketName}/*'
+            Condition:
+              StringEquals:
+                AWS:SourceArn: !Sub 
+                  - 'arn:aws:cloudfront::${AWS::AccountId}:distribution/${DistributionId}'
+                  - DistributionId: 
+                      Fn::ImportValue: DistributionId
+      Bucket: !Ref WWWBucketName
+
+
+
+  LogsBucketPolicy:
+    Type: 'AWS::S3::BucketPolicy'
+    Properties:
+      Bucket: !Ref LogsBucketName
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Action:
+              - 's3:PutObject'
+            Effect: Allow
+            Principal:
+              Service: logging.s3.amazonaws.com
+            Resource: 
+            - !Sub 'arn:aws:s3:::${LogsBucketName}/AccessLogs/*'
+            - !Sub 'arn:aws:s3:::${LogsBucketName}/WWWAccessLogs/*'
+            Condition:
+              ArnLike:
+                'aws:SourceArn': 
+                  - !Sub 'arn:aws:s3:::${SiteBucketName}'
+                  - !Sub 'arn:aws:s3:::${WWWBucketName}'
+              StringEquals:
+                'aws:SourceAccount': !Ref 'AWS::AccountId'
+          - Effect: Deny
+            Principal: '*'
+            Action: 's3:*'
+            Resource: 
+              - !Sub 'arn:aws:s3:::${LogsBucketName}'
+              - !Sub 'arn:aws:s3:::${LogsBucketName}/*'
+            Condition:
+              Bool:
+                'aws:SecureTransport': 'false'
+
+Outputs:
+  SiteBucketPolicyArn:
+    Value: !Ref SiteBucketPolicy
+    Description: ARN of the Site Bucket Policy
+  WWWBucketPolicyArn:
+    Value: !Ref WWWBucketPolicy
+    Description: ARN of the WWW Bucket Policy
+  LogsBucketPolicyArn:
+    Value: !Ref LogsBucketPolicy
+    Description: ARN of the Logs Bucket Policy

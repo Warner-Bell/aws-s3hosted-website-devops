@@ -1,0 +1,11 @@
+docker/**/*
+frontend-react-js/build/*
+*.env
+node_modules
+package.
+package-
+*.priv
+awscliv2.zip/*
+awscliv2.zip
+aws
+.git-credentials

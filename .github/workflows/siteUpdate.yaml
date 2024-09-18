@@ -1,0 +1,133 @@
+# Name of the workflow
+name: Update Site
+
+# Define when this workflow will run
+on:
+  push:
+    branches:
+      - main  # Runs on pushes to the main branch
+    paths:
+      - 'website-prod/*'  # Only trigger when files in website-prod directory change
+
+# Define environment variables that will be available to all jobs
+env:
+  AWS_REGION: 'us-east-1'  # Set the AWS region for deployment
+  WEBSITE_URL: ${{ secrets.WEBSITE_URL }}  # URL of the website to verify after update
+
+# Define the jobs that will run as part of this workflow
+jobs:
+  website-update:
+    runs-on: ubuntu-latest  # Use the latest Ubuntu runner
+
+    steps:
+      # Step 1: Check out the repository code
+      - name: Checkout repository
+        uses: actions/checkout@v3  # Use the latest stable version of the checkout action
+
+      # Step 2: Configure AWS Credentials
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      # Step 3: Sync with S3
+      - name: Sync with S3
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --follow-symlinks --delete
+          options: >
+            s3:putObjectAcl: '{"Owner": {"ID": "${{ secrets.AWS_CANONICAL_ID }}"},
+            "Grants": [{"Permission": "FULL_CONTROL", "Grantee": {"ID": "${{ secrets.AWS_CANONICAL_ID }}", "Type": "CanonicalUser"}}]}'
+        env:
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          SOURCE_DIR: 'website-prod'
+
+      # Step 4: Verify the update
+      - name: Verify update
+        run: |
+          # Use the WEBSITE_URL environment variable with a 30-second timeout
+          response=$(curl -s -o /dev/null -w "%{http_code}" --max-time 30 ${{ env.WEBSITE_URL }})
+          if [ $response = "200" ]; then
+            echo "Update verified successfully"
+          else
+            echo "Update verification failed"
+            exit 1
+          fi
+
+      # Step 5: Notify on successful update
+      - name: Notify on success
+        if: success()  # This step runs only if all previous steps succeeded
+        uses: 8398a7/action-slack@v3  # Use Slack action to send notification
+        with:
+          status: ${{ job.status }}
+          text: Website update succeeded! Branch: ${{ github.ref }}, Commit: ${{ github.sha }}
+          webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+
+      # Step 6: Notify on update failure
+      - name: Notify on failure
+        if: failure()  # This step runs if any previous step failed
+        uses: 8398a7/action-slack@v3  # Use Slack action to send notification
+        with:
+          status: ${{ job.status }}
+          text: Website update failed! Branch: ${{ github.ref }}, Commit: ${{ github.sha }}
+          webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+
+  distro-update:
+    needs: website-update  # This job runs after website-update job
+    runs-on: ubuntu-latest
+    environment: Production  # Use the Production environment (for protection rules)
+
+    steps:
+      # Step 1: Check out the repository code
+      - name: Checkout repository
+        uses: actions/checkout@v3  # Use the latest stable version of the checkout action
+
+      # Step 2: Configure AWS Credentials
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      # Step 3: Invalidate CloudFront Distribution
+      - name: Invalidate CloudFront Distribution
+        run: |
+          ./bin/invalidate-distro.sh
+        env:
+          AWS_EC2_METADATA_DISABLED: true
+
+      # Step 4: Verify the CloudFront update
+      - name: Verify CloudFront update
+        run: |
+          # Add verification steps for CloudFront update here
+          echo "Verifying CloudFront update..."
+          # You might want to add a delay here to allow for propagation
+          sleep 60
+          response=$(curl -s -o /dev/null -w "%{http_code}" --max-time 30 ${{ env.WEBSITE_URL }})
+          if [ $response = "200" ]; then
+            echo "CloudFront update verified successfully"
+          else
+            echo "CloudFront update verification failed"
+            exit 1
+          fi
+
+      # Step 5: Notify on successful CloudFront update
+      - name: Notify on success
+        if: success()  # This step runs only if all previous steps succeeded
+        uses: 8398a7/action-slack@v3  # Use Slack action to send notification
+        with:
+          status: ${{ job.status }}
+          text: CloudFront distribution update succeeded! Branch: ${{ github.ref }}, Commit: ${{ github.sha }}
+          webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+
+      # Step 6: Notify on CloudFront update failure
+      - name: Notify on failure
+        if: failure()  # This step runs if any previous step failed
+        uses: 8398a7/action-slack@v3  # Use Slack action to send notification
+        with:
+          status: ${{ job.status }}
+          text: CloudFront distribution update failed! Branch: ${{ github.ref }}, Commit: ${{ github.sha }}
+          webhook_url: ${{ secrets.SLACK_WEBHOOK }}

@@ -1,0 +1,207 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'S3Website Database, API and Lambda Function.'
+
+Parameters:
+  DomainName:
+    Type: String
+    Default: xxxxxxxx.com
+    Description: The domain name for the website
+
+  TagKey:
+    Type: String
+    Description: Key for resource tagging
+
+  TagValue:
+    Type: String
+    Description: Value for resource tagging
+
+Resources:
+  DynamoDBTable:
+    Type: AWS::DynamoDB::Table
+    Properties: 
+      AttributeDefinitions: 
+        - AttributeName: "ID"
+          AttributeType: "S"
+      BillingMode: PAY_PER_REQUEST
+      KeySchema: 
+        - AttributeName: "ID"
+          KeyType: "HASH"
+      TableName: "S3Website-views"
+
+  InitializerFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      Handler: index.handler
+      Role: !GetAtt InitializerRole.Arn
+      Code:
+        ZipFile: |
+          import boto3
+          import cfnresponse
+          def handler(event, context):
+            if event['RequestType'] == 'Create':
+              dynamodb = boto3.client('dynamodb')
+              try:
+                dynamodb.put_item(
+                  TableName='S3Website-views',
+                  Item={
+                    'ID': {'S': '1'},
+                    'views': {'N': '1'}
+                  },
+                  ReturnConsumedCapacity='TOTAL',
+                  ReturnItemCollectionMetrics='SIZE'
+                )
+                cfnresponse.send(event, context, cfnresponse.SUCCESS, {})
+              except Exception as e:
+                print(e)
+                cfnresponse.send(event, context, cfnresponse.FAILED, {})
+            else:
+              cfnresponse.send(event, context, cfnresponse.SUCCESS, {})
+      Runtime: python3.8
+
+  InitializerRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: DynamoDBAccess
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - dynamodb:PutItem
+                Resource: !GetAtt DynamoDBTable.Arn
+
+  TableInitializer:
+    Type: Custom::TableInitializer
+    DependsOn: DynamoDBTable
+    Properties:
+      ServiceToken: !GetAtt InitializerFunction.Arn
+
+  LambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: LambdaDynamoDBAccess
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - dynamodb:GetItem
+                  - dynamodb:PutItem
+                Resource: !GetAtt DynamoDBTable.Arn
+        - PolicyName: LambdaBasicExecution
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: arn:aws:logs:*:*:*
+
+  lambdaFunction: 
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: S3website-lambda-api
+      Runtime: python3.8
+      Role: !GetAtt LambdaExecutionRole.Arn
+      Handler: index.lambda_handler
+      MemorySize: 256
+      #ReservedConcurrentExecutions: 20
+      Code:
+        ZipFile: |
+          import json
+          import boto3
+          import os
+
+          dynamodb = boto3.resource('dynamodb')
+          table = dynamodb.Table(os.environ['TABLE_NAME'])
+
+          def lambda_handler(event, context):
+              try:
+                  # Get the current view count
+                  response = table.get_item(Key={'ID':'1'})
+                  item = response.get('Item', {'ID': '1', 'views': 0})
+                  
+                  # Increment the view count
+                  views = item['views'] + 1
+                  
+                  # Update the view count in DynamoDB
+                  table.put_item(Item={
+                      'ID': '1',
+                      'views': views
+                  })
+                  
+                  return {
+                      'statusCode': 200,
+                      'body': json.dumps(views),
+                      'headers': {
+                          'Content-Type': 'application/json',
+                          'Access-Control-Allow-Origin': '*'
+                      }
+                  }
+              except Exception as e:
+                  print(f"Error: {str(e)}")
+                  return {
+                      'statusCode': 500,
+                      'body': json.dumps({'error': 'Internal server error'}),
+                      'headers': {
+                          'Content-Type': 'application/json',
+                          'Access-Control-Allow-Origin': '*'
+                      }
+                  }
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref DynamoDBTable
+      Description: S3Website-views-lambda
+
+  LambdaApi:
+    Type: AWS::Lambda::Url
+    Properties: 
+      AuthType: NONE
+      Cors:
+        AllowMethods: 
+          - "GET"
+        AllowOrigins:
+          - !Sub "https://${DomainName}"
+          - !Sub "https://www.${DomainName}"
+        AllowHeaders:
+          - "Content-Type"
+        MaxAge: 300
+      InvokeMode: BUFFERED
+      TargetFunctionArn: !GetAtt lambdaFunction.Arn
+
+  permissionForURLInvoke:
+     Type: AWS::Lambda::Permission
+     Properties:
+       FunctionName: !Ref lambdaFunction
+       FunctionUrlAuthType: 'NONE'
+       Action: lambda:InvokeFunctionUrl
+       Principal: '*'
+
+Outputs:
+  DynamoDBTableName:
+    Value: !Ref DynamoDBTable
+  DynamoDBTableArn:
+    Value: !GetAtt DynamoDBTable.Arn
+  lambdaFunctionARN:
+    Value: !GetAtt lambdaFunction.Arn
+  lambdaFunctionUrl:
+    Value: !GetAtt LambdaApi.FunctionUrl
+    Description: "The HTTP URL endpoint for your function."
