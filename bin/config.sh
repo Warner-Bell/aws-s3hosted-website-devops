@@ -2,7 +2,7 @@
 # Version: 1.0
 # Last Updated: 2024-09-05
 
-# IMPORTANT!!!: Replace S3 BucketNames, DomainName, HostedZoneId, & Tagging placeholders with your actual values before use.
+# IMPORTANT!!!: Replace CFN_Bucket, S3 BucketNames, DomainName, HostedZoneId, & Tagging placeholders with your actual values before use.
 
 # AWS Region
 AWS_REGION="us-east-1"  # Specify your desired AWS region
