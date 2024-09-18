@@ -167,8 +167,14 @@ git config --global user.email "your.email@example.com"
 
 ### 🔍 **View Git Configuration:**
 
-```bash
+```
 git config --list
+```
+
+### Install Git CLI
+
+```
+sudo apt install gh
 ```
 
 ---

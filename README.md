@@ -24,9 +24,9 @@ This project provides a template for hosting a static website on Amazon S3 with 
 ## 📋 Prerequisites
 
 - Basic Dev eviroment setup (How-to Doc ---> DEV_ENV_SETUP.md)
-- A domain name and a RT53 trusted zone (if you buy your domain from aws no further config necessary)
+- GitHub account and a generated access token (How-to Doc ---> GENERATE-GITHUB-TOKEN.md)
 - AWS account with appropriate permissions
-- GitHub account for the github actions to work
+- A domain name and a RT53 trusted zone (if you buy your domain from aws no further config necessary)
 - Basic knowledge of HTML, CSS, and JavaScript (for website development)
 
 ## 🔄 Workflows
@@ -41,6 +41,7 @@ Automatically updates the S3 bucket and invalidates CloudFront distribution when
 Manually or comment triggered workflow to tear down the website infrastructure.
 
 ## 🖥️ Local Development
+
 
 1. Clone the repository:
 
