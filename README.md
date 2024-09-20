@@ -1,8 +1,8 @@
-# 🌐 EASY!!! - `AWS S3-Hosted Website CI\CD` - EASY!!!
-
 ![Deploy Site](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/actions/workflows/deploy.yml/badge.svg)
 
 ![Update Site](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/actions/workflows/update.yml/badge.svg)
+
+# 🌐 EASY!!! - `AWS S3-Hosted Website CI\CD` - EASY!!!
 
 This project provides a super easy solution for hosting a static website on Amazon S3, using a DevOps workflow, IAC & GitHub Actions for automated deployment and updates. **All you need is a domain and a hosted zone!**
 
@@ -18,6 +18,10 @@ This project provides a super easy solution for hosting a static website on Amaz
 - Easy local development workflow with a customizable structure.
 
 ## 📋 Prerequisites
+Local Dev Environment or Gitpod
+GitHub Account & Access Token
+AWS Account & Permissions
+Domain & Hosted Zone
 
 ### AWS Setup
 - An **AWS account** and your user imbued with appropriate permissions (IAM Role with **admin** or full access to **CloudFormation**, **S3**, **CloudFront**, **Lambda**, **DynamoDB**, **Certificate Manager**, and **Route 53**).
@@ -25,7 +29,9 @@ This project provides a super easy solution for hosting a static website on Amaz
   
 ### Local Setup
 - Basic development environment setup. See [DEV_ENV_SETUP.md](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/d2a553a7f9f4d547491e3b45b0b4778c2d1a9114/DEV_ENV_SETUP.md) for instruction.
+
 - **GitHub account** and a generated access token. See [GENERATE-GITHUB-TOKEN.md](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/d2a553a7f9f4d547491e3b45b0b4778c2d1a9114/GENERATE-GITHUB-TOKEN.md) for instruction.
+
 - Basic knowledge of **HTML**, **CSS**, and **JavaScript** (for website development).
 
 ## 🔧 Configuration
