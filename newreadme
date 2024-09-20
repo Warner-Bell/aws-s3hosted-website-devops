@@ -1,0 +1,137 @@
+# S3 Hosted Website Template
+
+This project provides a template for hosting a static website on Amazon S3 with CloudFront distribution, using GitHub Actions for automated deployment and updates.
+
+## 🚀 Features
+
+- Automated deployment to Amazon S3 via CloudFormation.
+- CloudFront distribution for fast content delivery.
+- Origin Access Control (OAC) for secure delivery.
+- SSL/TLS Certificate for secure connections.
+- GitHub Actions for a fully automated CI/CD pipeline.
+- Easy local development workflow with a customizable structure.
+
+## 📋 Prerequisites
+
+- 🖥️ Basic development environment setup ([DEV_ENV_SETUP.md](link-to-dev-setup))
+- 🛡️ GitHub account and a generated access token ([GENERATE-GITHUB-TOKEN.md](link-to-token-guide))
+- 🌐 AWS account with appropriate IAM roles:
+   - Full access to S3, CloudFront, Lambda, DynamoDB, Certificate Manager
+   - Route 53 access with permissions to create hosted zones and manage DNS records
+- 🌍 A domain name and Route 53 hosted zone (If purchased from AWS, no additional configuration necessary)
+- 💻 Basic knowledge of HTML, CSS, and JavaScript (for website development)
+
+## 🔧 Configuration
+
+The only manual configuration required is updating the `config.sh` file with your specific variables (e.g., domain name, AWS region). A guide for setting up the `config.sh` file can be found in [CONFIG_SETUP.md](link-to-config-guide).
+
+## 🔄 Workflows
+
+### 🆕 Deploy Site
+
+Manually triggered or comment-triggered workflow to deploy the website infrastructure. All resources (S3, CloudFront, Route 53, etc.) are created via CloudFormation templates when a commit contains "deploy-site."
+
+- **Steps**:
+  1. Ensure AWS credentials are set as GitHub secrets (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`).
+  2. Configure environment variables in the GitHub Actions workflow file (`.github/workflows/deploy-site.yml`).
+  3. Trigger the workflow manually from the Actions tab or by adding a specific comment in a pull request.
+  4. The workflow will set up the S3 bucket, CloudFront distribution, and Route 53 records.
+
+### 🔄 Update Site
+
+Automatically updates the S3 bucket and invalidates CloudFront distribution when changes are pushed to the `main` branch in the `website-prod` directory. Ensure the changes follow proper versioning and compatibility checks.
+
+- **Steps**:
+  1. Make changes to your website files in the `website-prod` directory.
+  2. Push changes to the `main` branch.
+  3. The workflow uploads new files to S3 and invalidates the CloudFront cache to reflect the changes.
+
+### 🗑️ Destroy Site
+
+Manually triggered workflow to tear down the website infrastructure. This destroys CloudFormation stacks with all associated resources.
+
+- **Steps**:
+  1. Trigger the destroy workflow manually from the Actions tab or by adding a specific comment in a pull request.
+  2. The workflow will delete the S3 bucket, CloudFront distribution, and Route 53 records associated with the project.
+
+## 🖥️ Local Development
+
+1. Clone the repository:
+
+    ```bash
+    git clone https://github.com/your-username/your-repo-name.git
+    ```
+
+2. Navigate to the project directory:
+
+    ```bash
+    cd your-repo-name
+    ```
+
+3. Update the configuration file with appropriate variables.
+4. Add your website files to the `website-prod` directory. Ensure your file structure aligns with the project setup for smooth deployment.
+5. Test your changes locally. You can use a tool like `http-server` to serve your static files for testing:
+
+    ```bash
+    npm install -g http-server
+    http-server ./website-prod
+    ```
+
+6. Commit your changes:
+
+    ```bash
+    git add .
+    git commit -m "deploy-site"
+    ```
+
+7. Push your changes to trigger the update workflow:
+
+    ```bash
+    git push origin main
+    ```
+
+## 📚 Additional Resources
+
+- [Amazon S3 Documentation](https://docs.aws.amazon.com/s3/)
+- [CloudFront Documentation](https://docs.aws.amazon.com/cloudfront/)
+- [GitHub Actions Documentation](https://docs.github.com/en/actions)
+- [AWS IAM Role Permissions Setup](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html)
+- [Route 53 Hosted Zone Documentation](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html)
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome! Here's how you can contribute:
+
+1. Fork the Project.
+2. Create your feature branch:
+
+    ```bash
+    git checkout -b feature/AmazingFeature
+    ```
+
+3. Commit your changes:
+
+    ```bash
+    git commit -m 'Add some AmazingFeature'
+    ```
+
+4. Push to the branch:
+
+    ```bash
+    git push origin feature/AmazingFeature
+    ```
+
+5. Open a pull request.
+
+Feel free to check the [issues page](link-to-issues) for any open issues or feature requests.
+
+## 📝 License
+
+This project is [MIT](link-to-license) licensed.
+
+## 📬 Contact
+
+Warner Bell - [Tap In!](https://dot.cards/warnerbell) - yo@warnerbell.com
+
+Project Link: [S3-Website](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD)
+
