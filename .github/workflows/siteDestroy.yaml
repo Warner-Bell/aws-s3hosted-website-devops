@@ -71,20 +71,4 @@ jobs:
             exit 1
           fi
 
-      # Step 8: Notify on successful destruction
-      - name: Notify on success
-        if: success()  # This step runs only if all previous steps succeeded
-        uses: 8398a7/action-slack@v3  # Use Slack action to send notification
-        with:
-          status: ${{ job.status }}
-          text: Site destruction succeeded! Branch: ${{ github.ref }}, Commit: ${{ github.sha }}
-          webhook_url: ${{ secrets.SLACK_WEBHOOK }}
-
-      # Step 9: Notify on destruction failure
-      - name: Notify on failure
-        if: failure()  # This step runs if any previous step failed
-        uses: 8398a7/action-slack@v3  # Use Slack action to send notification
-        with:
-          status: ${{ job.status }}
-          text: Site destruction failed! Branch: ${{ github.ref }}, Commit: ${{ github.sha }}
-          webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+      
