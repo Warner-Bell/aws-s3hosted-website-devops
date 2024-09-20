@@ -104,6 +104,6 @@ This project is [MIT](link-to-license) licensed.
 
 ## 📬 Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_twitter) - email@example.com
+Warner Bell - [@your_twitter](https://twitter.com/warnerb3000) - yo@warnerbell.com
 
-Project Link: [https://github.com/your-username
+Project Link: [S3-Website](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD)
