@@ -1,5 +1,9 @@
 # 🌐 EASY!!! - `AWS S3-Hosted Website CI\CD` - EASY!!!
 
+![Deploy Site](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/actions/workflows/deploy.yml/badge.svg)
+
+![Update Site](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/actions/workflows/update.yml/badge.svg)
+
 This project provides a super easy solution for hosting a static website on Amazon S3, using a DevOps workflow, IAC & GitHub Actions for automated deployment and updates. **All you need is a domain and a hosted zone!**
 
 **Note:** *All of the code was created with the assistance of **Amazon Q***
@@ -20,8 +24,8 @@ This project provides a super easy solution for hosting a static website on Amaz
 - A domain name and a **Route 53** hosted zone (If domain purchased from AWS, no additional configuration necessary).
   
 ### Local Setup
-- Basic development environment setup. See ([DEV_ENV_SETUP.md](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/d2a553a7f9f4d547491e3b45b0b4778c2d1a9114/DEV_ENV_SETUP.md) for instruction.
-- **GitHub account** and a generated access token. See ([GENERATE-GITHUB-TOKEN.md](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/d2a553a7f9f4d547491e3b45b0b4778c2d1a9114/GENERATE-GITHUB-TOKEN.md) for instruction.
+- Basic development environment setup. See [DEV_ENV_SETUP.md](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/d2a553a7f9f4d547491e3b45b0b4778c2d1a9114/DEV_ENV_SETUP.md) for instruction.
+- **GitHub account** and a generated access token. See [GENERATE-GITHUB-TOKEN.md](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/d2a553a7f9f4d547491e3b45b0b4778c2d1a9114/GENERATE-GITHUB-TOKEN.md) for instruction.
 - Basic knowledge of **HTML**, **CSS**, and **JavaScript** (for website development).
 
 ## 🔧 Configuration
@@ -141,6 +145,3 @@ This project is licensed under the [MIT License](TBD).
 Warner Bell - [Tap In!](https://dot.cards/warnerbell) - yo@warnerbell.com
 
 Project Link: [S3-Website](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD)
-
-![Deploy Site](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/actions/workflows/deploy.yml/badge.svg)
-![Update Site](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/actions/workflows/update.yml/badge.svg)
