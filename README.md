@@ -1,6 +1,8 @@
-# 🌐 S3 Hosted Website Template
+# 🌐 EASY!!! - `AWS S3-Hosted Website CI\CD` - EASY!!!
 
-This project provides a template for hosting a static website on Amazon S3 with CloudFront distribution, using GitHub Actions for automated deployment and updates. All of the code was created with the assistance of **Amazon Q**.
+This project provides a super easy solution for hosting a static website on Amazon S3, using a DevOps workflow, IAC & GitHub Actions for automated deployment and updates. **All you need is a domain and a hosted zone!**
+
+**Note:** *All of the code was created with the assistance of **Amazon Q***
 
 ## 🚀 Features
 
@@ -14,17 +16,17 @@ This project provides a template for hosting a static website on Amazon S3 with 
 ## 📋 Prerequisites
 
 ### AWS Setup
-- An **AWS account** with appropriate permissions (IAM Role with full access to **S3**, **CloudFront**, **Lambda**, **DynamoDB**, **Certificate Manager**, and **Route 53**).
-- A domain name and a **Route 53** hosted zone (If purchased from AWS, no additional configuration necessary).
+- An **AWS account** and your user imbued with appropriate permissions (IAM Role with **admin** or full access to **CloudFormation**, **S3**, **CloudFront**, **Lambda**, **DynamoDB**, **Certificate Manager**, and **Route 53**).
+- A domain name and a **Route 53** hosted zone (If domain purchased from AWS, no additional configuration necessary).
   
 ### Local Setup
-- Basic development environment setup ([DEV_ENV_SETUP.md](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/d2a553a7f9f4d547491e3b45b0b4778c2d1a9114/DEV_ENV_SETUP.md)
-- **GitHub account** and a generated access token ([GENERATE-GITHUB-TOKEN.md](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/d2a553a7f9f4d547491e3b45b0b4778c2d1a9114/GENERATE-GITHUB-TOKEN.md)
+- Basic development environment setup. See ([DEV_ENV_SETUP.md](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/d2a553a7f9f4d547491e3b45b0b4778c2d1a9114/DEV_ENV_SETUP.md) for instruction.
+- **GitHub account** and a generated access token. See ([GENERATE-GITHUB-TOKEN.md](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/d2a553a7f9f4d547491e3b45b0b4778c2d1a9114/GENERATE-GITHUB-TOKEN.md) for instruction.
 - Basic knowledge of **HTML**, **CSS**, and **JavaScript** (for website development).
 
 ## 🔧 Configuration
 
-Before using the workflows, ensure that you have updated the configuration file (`config.sh`) with the correct values such as **S3 Bucket Names**, **Domain Name**, **Hosted Zone ID**, and other variables. See [CONFIG_SETUP.md](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/f070c8c586f654f576928a14680486e3005c005b/CONFIG_SETUP.md) for more details.
+Before using the workflows, ensure that you have updated the configuration file (`config.sh`) with the correct values such as **S3 Bucket Names**, **Domain Name**, **Hosted Zone ID**, and other variables. See [CONFIG_SETUP.md](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/f070c8c586f654f576928a14680486e3005c005b/CONFIG_SETUP.md) for instruction.
 
 ## 🔄 Workflows
 
