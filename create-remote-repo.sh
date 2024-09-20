@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Repository name (URL-encoded)
-REPO_NAME="AWS-S3Hosted-Website-CICD"
+REPO_NAME="AWS-S3Hosted-Website-CI_CD"
 
 # Whether the repository should be private (true/false)
 PRIVATE=true
