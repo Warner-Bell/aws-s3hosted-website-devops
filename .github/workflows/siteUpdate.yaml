@@ -3,6 +3,7 @@ name: Update Site
 
 # Define when this workflow will run
 on:
+  workflow_dispatch:  # Allows manual triggering of the workflow
   push:
     branches:
       - main  # Runs on pushes to the main branch
@@ -26,7 +27,7 @@ jobs:
 
       # Step 2: Configure AWS Credentials
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2  # Use the latest version for secure handling
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -49,14 +50,13 @@ jobs:
         run: |
           # Use the WEBSITE_URL environment variable with a 30-second timeout
           response=$(curl -s -o /dev/null -w "%{http_code}" --max-time 30 ${{ env.WEBSITE_URL }})
-          if [ $response = "200" ]; then
+          if [ "$response" -eq 200 ]; then
             echo "Update verified successfully"
           else
-            echo "Update verification failed"
+            echo "Update verification failed with status code: $response"
             exit 1
           fi
 
-      
   distro-update:
     needs: website-update  # This job runs after website-update job
     runs-on: ubuntu-latest
@@ -69,7 +69,7 @@ jobs:
 
       # Step 2: Configure AWS Credentials
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2  # Use the latest version for secure handling
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -90,11 +90,9 @@ jobs:
           # You might want to add a delay here to allow for propagation
           sleep 60
           response=$(curl -s -o /dev/null -w "%{http_code}" --max-time 30 ${{ env.WEBSITE_URL }})
-          if [ $response = "200" ]; then
+          if [ "$response" -eq 200 ]; then
             echo "CloudFront update verified successfully"
           else
-            echo "CloudFront update verification failed"
+            echo "CloudFront update verification failed with status code: $response"
             exit 1
           fi
-
-     
