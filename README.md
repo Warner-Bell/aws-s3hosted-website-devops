@@ -98,10 +98,12 @@ Manually or comment-triggered workflow to tear down the website infrastructure.
 
 ## 📚 Additional Resources
 
+- [Amazon Q Documentation](https://docs.aws.amazon.com/amazonq/)
+- [CloudFormation Documentation](https://docs.aws.amazon.com/cloudformation/)
 - [Amazon S3 Documentation](https://docs.aws.amazon.com/s3/)
 - [CloudFront Documentation](https://docs.aws.amazon.com/cloudfront/)
 - [GitHub Actions Documentation](https://docs.github.com/en/actions)
-- [AWS IAM Role Permissions Setup](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html)
+- [AWS IAM Role Permissions Documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html)
 - [Route 53 Hosted Zone Documentation](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html)
 
 ---
