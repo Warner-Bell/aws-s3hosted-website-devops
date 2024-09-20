@@ -20,6 +20,7 @@ This project provides a template for hosting a static website on Amazon S3 with 
 - Automated deployment to Amazon S3.
 - CloudFront distribution for fast content delivery.
 - Origin Access Control (OAC) for secure delivery.
+- SSL\TLS Certificate 
 - GitHub Actions for CI/CD pipeline.
 - Easy local development workflow with a customizable structure.
 
@@ -27,20 +28,20 @@ This project provides a template for hosting a static website on Amazon S3 with 
 
 - Basic development environment setup (How-to Doc ---> `DEV_ENV_SETUP.md`)
 - GitHub account and a generated access token (How-to Doc ---> `GENERATE-GITHUB-TOKEN.md`)
-- AWS account with appropriate permissions (IAM Role with S3, CloudFront, and Route 53 access).
+- AWS account with appropriate permissions (IAM Role with S3, CloudFront, lambda, dynamodb, cert manager and Route 53 access).
 - A domain name and a Route 53 hosted zone (If purchased from AWS, no additional configuration necessary).
 - Basic knowledge of HTML, CSS, and JavaScript (for website development).
 
 ## 🔄 Workflows
 
 ### 🆕 Deploy Site
-Manually or comment-triggered workflow to deploy the website. This can be done by executing the workflow through the GitHub Actions tab.
+Manually (This can be done by executing the workflow through the GitHub Actions tab) or comment-triggered workflow to deploy the website.
 
 ### 🔄 Update Site
 Automatically updates the S3 bucket and invalidates the CloudFront distribution when changes are pushed to the `main` branch in the `website-prod` directory. Ensure the changes follow proper versioning and compatibility checks.
 
 ### 🗑️ Destroy Site
-Manually or comment-triggered workflow to tear down the website infrastructure. This removes the S3 bucket and disassociates the CloudFront distribution.
+Manually or comment-triggered workflow to tear down the website infrastructure. This destroys cloudformation stacks with all resources.
 
 ## 🖥️ Local Development
 
