@@ -1,54 +1,57 @@
-## 🔄 Workflows
+# 🌐 S3 Hosted Website Template
 
-### 🆕 Deploy Site
-Manually triggered workflow to deploy the website. (Takes approximately 15 minutes).
-
-### 🔄 Update Site
-Automatically updates the S3 bucket and invalidates CloudFront distribution when changes are pushed to the `main` branch in the `website-prod` directory. 
-
-- **Note**: Ensure environment variables like `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` are set in your GitHub repository for proper CI/CD functionality.
-
-### 🗑️ Destroy Site
-Manually triggered workflow to tear down the website infrastructure.
-
-# S3 Hosted Website Template
-
-This project provides a template for hosting a static website on Amazon S3 with CloudFront distribution, using GitHub Actions for automated deployment and updates.
+This project provides a template for hosting a static website on Amazon S3 with CloudFront distribution, using GitHub Actions for automated deployment and updates. All of the code was created with the assistance of **Amazon Q**.
 
 ## 🚀 Features
 
-- Automated deployment to Amazon S3.
-- CloudFront distribution for fast content delivery.
-- Origin Access Control (OAC) for secure delivery.
-- SSL\TLS Certificate 
-- GitHub Actions for CI/CD pipeline.
+- Automated deployment to **Amazon S3** using **CloudFormation**.
+- **CloudFront** distribution for fast content delivery.
+- **Origin Access Control (OAC)** for secure delivery.
+- **SSL/TLS Certificate** for secure connections.
+- **GitHub Actions** for a fully automated CI/CD pipeline.
 - Easy local development workflow with a customizable structure.
 
 ## 📋 Prerequisites
 
-- Basic development environment setup (How-to Doc ---> `DEV_ENV_SETUP.md`)
-- GitHub account and a generated access token (How-to Doc ---> `GENERATE-GITHUB-TOKEN.md`)
-- AWS account with appropriate permissions (IAM Role with S3, CloudFront, lambda, dynamodb, cert manager and Route 53 access).
-- A domain name and a Route 53 hosted zone (If purchased from AWS, no additional configuration necessary).
-- Basic knowledge of HTML, CSS, and JavaScript (for website development).
+### AWS Setup
+- An **AWS account** with appropriate permissions (IAM Role with full access to **S3**, **CloudFront**, **Lambda**, **DynamoDB**, **Certificate Manager**, and **Route 53**).
+- A domain name and a **Route 53** hosted zone (If purchased from AWS, no additional configuration necessary).
+  
+### Local Setup
+- Basic development environment setup ([DEV_ENV_SETUP.md](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/d2a553a7f9f4d547491e3b45b0b4778c2d1a9114/DEV_ENV_SETUP.md)
+- **GitHub account** and a generated access token ([GENERATE-GITHUB-TOKEN.md](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/d2a553a7f9f4d547491e3b45b0b4778c2d1a9114/GENERATE-GITHUB-TOKEN.md)
+- Basic knowledge of **HTML**, **CSS**, and **JavaScript** (for website development).
+
+## 🔧 Configuration
+
+Before using the workflows, ensure that you have updated the configuration file (`config.sh`) with the correct values such as **S3 Bucket Names**, **Domain Name**, **Hosted Zone ID**, and other variables. See [CONFIG_SETUP.md](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/f070c8c586f654f576928a14680486e3005c005b/CONFIG_SETUP.md) for more details.
 
 ## 🔄 Workflows
 
 ### 🆕 Deploy Site
-Manually (This can be done by executing the workflow through the GitHub Actions tab) or comment-triggered workflow to deploy the website.
+Manually triggered or comment-triggered workflow to deploy the website.
+
+- **How to Trigger**: You can trigger this workflow through the GitHub Actions tab or by adding a comment like `deploy-site` on a commit and push it to origin.
 
 ### 🔄 Update Site
-Automatically updates the S3 bucket and invalidates the CloudFront distribution when changes are pushed to the `main` branch in the `website-prod` directory. Ensure the changes follow proper versioning and compatibility checks.
+Automatically updates the **S3 bucket** and invalidates **CloudFront distribution** when changes to the `website-prod` directory are pushed to the `main`.
+
+- **Note**: Ensure environment variables such as `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and `AWS_REGION` are set in your GitHub repository secrets for proper CI/CD functionality. Follow this guide to set environment variables: [GitHub Secrets Documentation](https://docs.github.com/en/actions/security-guides/encrypted-secrets).
 
 ### 🗑️ Destroy Site
-Manually or comment-triggered workflow to tear down the website infrastructure. This destroys cloudformation stacks with all resources.
+Manually or comment-triggered workflow to tear down the website infrastructure.
+
+- **How to Trigger**: You can trigger this workflow through the GitHub Actions tab or by adding a comment like `destroy-site` on a commit and push it to origin.
+
+---
 
 ## 🖥️ Local Development
 
+### 1. Setup
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/your-username/your-repo-name.git
+    git clone https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD.git
     ```
 
 2. Navigate to the project directory:
@@ -57,27 +60,35 @@ Manually or comment-triggered workflow to tear down the website infrastructure. 
     cd your-repo-name
     ```
 
-3. Update the configuration file with appropriate variables.
-4. Add your website files to the `website-prod` directory. Ensure your file structure aligns with the project setup for smooth deployment.
-5. Test your changes locally. You can use a tool like `http-server` to serve your static files for testing:
+3. Update the configuration file with appropriate variables as explained in [CONFIG_SETUP.md](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/f070c8c586f654f576928a14680486e3005c005b/CONFIG_SETUP.md).
+
+### 2. Testing and Deployment
+
+1. Add your website files to the `website-prod` directory. Ensure your file structure aligns with the project setup for smooth deployment.
+
+2. Test your changes locally. You can use a tool like `http-server` to serve your static files for testing:
 
     ```bash
     npm install -g http-server
     http-server ./website-prod
     ```
 
-6. Commit your changes:
+3. Create a Remote Copy of your Customized repo on GitHub by editing the `REPO_NAME=` in the [create-remote-repo.sh](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/966af9c5136f472f4341ea60cd545249307d1344/create-remote-repo.sh) file and then running it. Once the repo is created.
+
+4. Commit your changes:
 
     ```bash
     git add .
     git commit -m "deploy-site"
     ```
 
-7. Push your changes to trigger the update workflow:
+5. Push your changes to trigger the deploy workflow:
 
     ```bash
     git push origin main
     ```
+
+---
 
 ## 📚 Additional Resources
 
@@ -87,39 +98,47 @@ Manually or comment-triggered workflow to tear down the website infrastructure. 
 - [AWS IAM Role Permissions Setup](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html)
 - [Route 53 Hosted Zone Documentation](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html)
 
+---
+
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome! Here's how you can contribute:
 
-1. Fork the Project.
-2. Create your feature branch:
+1. Fork the project:
 
     ```bash
     git checkout -b feature/AmazingFeature
     ```
 
-3. Commit your changes:
+2. Commit your changes:
 
     ```bash
     git commit -m 'Add some AmazingFeature'
     ```
 
-4. Push to the branch:
+3. Push to the branch:
 
     ```bash
     git push origin feature/AmazingFeature
     ```
 
-5. Open a pull request.
+4. Open a pull request.
 
-Feel free to check the [issues page](link-to-issues) for any open issues or feature requests.
+Feel free to check the [issues page](TBD) for any open issues or feature requests.
+
+---
 
 ## 📝 License
 
-This project is [MIT](link-to-license) licensed.
+This project is licensed under the [MIT License](TBD).
+
+---
 
 ## 📬 Contact
 
 Warner Bell - [Tap In!](https://dot.cards/warnerbell) - yo@warnerbell.com
 
 Project Link: [S3-Website](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD)
+
+![Deploy Site](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/actions/workflows/deploy.yml/badge.svg)
+![Update Site](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/actions/workflows/update.yml/badge.svg)
