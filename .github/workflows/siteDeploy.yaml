@@ -1,63 +1,50 @@
-# Name of the workflow
 name: Deploy Site
 
-# Define when this workflow will run
 on:
-  workflow_dispatch:  # Allows manual triggering of the workflow
+  workflow_dispatch:
   push:
     branches:
-      - main  # Runs on pushes to the main branch
+      - main
 
-# Define environment variables that will be available to all jobs
 env:
-  AWS_REGION: 'us-east-1'  # Set the AWS region for deployment
-  WEBSITE_URL: ${{ secrets.WEBSITE_URL }}  # URL of the website to verify after deployment
+  AWS_REGION: 'us-east-1'
+  WEBSITE_URL: ${{ secrets.WEBSITE_URL }}
 
-# Define the jobs that will run as part of this workflow
 jobs:
   deploy:
     if: "contains(github.event.head_commit.message, 'deploy-site')"
     runs-on: ubuntu-latest
-    timeout-minutes: 30  # Set a 30-minute timeout for the entire job
+    timeout-minutes: 30
 
     steps:
-      # Step 1: Check out the repository code
       - name: Checkout repository
-        uses: actions/checkout@v3  # Use the latest stable version of the checkout action
+        uses: actions/checkout@v3
 
-      # Step 2: Set up Node.js environment
       - name: Setup Node.js
-        uses: actions/setup-node@v3  # Use the latest stable version of the setup-node action
+        uses: actions/setup-node@v3
         with:
-          node-version: '16'  # Use Node.js version 16
+          node-version: '16'
 
-      # Step 3: Cache npm dependencies to speed up installation
       - name: Cache dependencies
-        uses: actions/cache@v3  # Use the latest stable version of the cache action
+        uses: actions/cache@v3
         with:
-          path: ~/.npm  # Specify the path to cache
-          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}  # Create a cache key based on OS and package-lock.json
+          path: ~/.npm
+          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.OS }}-node-  # Fallback to using the latest cache if no exact match is found
+            ${{ runner.OS }}-node-
 
-      # Step 4: Install project dependencies
       - name: Install dependencies
-        run: npm ci  # Use 'ci' for clean install, respecting package-lock.json
+        run: npm ci
 
-      # Step 5: Build and deploy the site
       - name: Build Site
-        run: |
-          ./bin/website-deploy  # Run your custom deployment script
+        run: ./bin/website-deploy
         env:
-          # Set AWS credentials as environment variables
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ env.AWS_REGION }}
 
-      # Step 6: Verify the deployment
       - name: Verify deployment
         run: |
-          # Use the WEBSITE_URL environment variable with a 30-second timeout
           response=$(curl -s -o /dev/null -w "%{http_code}" --max-time 30 ${{ env.WEBSITE_URL }})
           if [ $response = "200" ]; then
             echo "Deployment verified successfully"
@@ -66,19 +53,17 @@ jobs:
             exit 1
           fi
 
-      # Step 7: Notify on successful deployment
       - name: Notify on success
-        if: success()  # This step runs only if all previous steps succeeded
-        uses: 8398a7/action-slack@v3  # Use Slack action to send notification
+        if: success()
+        uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
           text: Deployment succeeded! Branch: ${{ github.ref }}, Commit: ${{ github.sha }}
           webhook_url: ${{ secrets.SLACK_WEBHOOK }}
 
-      # Step 8: Notify on deployment failure
       - name: Notify on failure
-        if: failure()  # This step runs if any previous step failed
-        uses: 8398a7/action-slack@v3  # Use Slack action to send notification
+        if: failure()
+        uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
           text: Deployment failed! Branch: ${{ github.ref }}, Commit: ${{ github.sha }}
