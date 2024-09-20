@@ -18,10 +18,16 @@ This project provides a super easy solution for hosting a static website on Amaz
 - Easy local development workflow with a customizable structure.
 
 ## 📋 Prerequisites
-- Local Dev Environment or Gitpod
-- GitHub Account & Access Token
-- AWS Account & Permissions
-- Domain & Hosted Zone
+- Local Dev Environment or Gitpod - (To Build on)
+- GitHub Account & Access Token - (To Use Automation)
+- AWS Account & Permissions - (To Host and Deploy on)
+- Domain & Hosted Zone - (To Route Your Traffic)
+
+- Basic Dev eviroment setup (How-to Doc ---> DEV_ENV_SETUP.md)
+A domain name and a RT53 trusted zone (if you buy your domain from aws no further config necessary)
+AWS account with appropriate permissions
+GitHub account for the github actions to work
+Basic knowledge of HTML, CSS, and JavaScript (for website development)
 
 ### AWS Setup
 - An **AWS account** and your user imbued with appropriate permissions (IAM Role with **admin** or full access to **CloudFormation**, **S3**, **CloudFront**, **Lambda**, **DynamoDB**, **Certificate Manager**, and **Route 53**).
@@ -76,7 +82,7 @@ Manually or comment-triggered workflow to tear down the website infrastructure.
 
 ### 2. Testing and Deployment
 
-1. Add your website files to the `website-prod` directory. Ensure your file structure aligns with the project setup for smooth deployment.
+1. Use the included **Demo Site** or add your own website files to the `website-prod` directory. Ensure your file structure aligns with the project setup for smooth deployment.
 
 2. Test your changes locally. You can use a tool like `http-server` to serve your static files for testing:
 
