@@ -18,10 +18,10 @@ This project provides a super easy solution for hosting a static website on Amaz
 - Easy local development workflow with a customizable structure.
 
 ## 📋 Prerequisites
-Local Dev Environment or Gitpod
-GitHub Account & Access Token
-AWS Account & Permissions
-Domain & Hosted Zone
+- Local Dev Environment or Gitpod
+- GitHub Account & Access Token
+- AWS Account & Permissions
+- Domain & Hosted Zone
 
 ### AWS Setup
 - An **AWS account** and your user imbued with appropriate permissions (IAM Role with **admin** or full access to **CloudFormation**, **S3**, **CloudFront**, **Lambda**, **DynamoDB**, **Certificate Manager**, and **Route 53**).
