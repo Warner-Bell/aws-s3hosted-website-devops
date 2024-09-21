@@ -3,7 +3,7 @@ name: Update Site
 
 # Define when this workflow will run
 on:
-  workflow_dispatch:  # Allows manual triggering of the workflow
+  workflow_dispatch:  # Allows manual triggering of the workflow.
   push:
     branches:
       - main  # Runs on pushes to the main branch
