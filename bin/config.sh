@@ -8,7 +8,7 @@
 AWS_REGION="us-east-1"  # Specify your desired AWS region
 
 # Stack Names
-S3_BUCKETS_STACK="S3WebSite-Buckets"       # Name for the S3 buckets CloudFormation stack
+S3_BUCKETS_STACK="S3WebSite-Buckets-GP"       # Name for the S3 buckets CloudFormation stack
 CLOUDFRONT_STACK="S3WebSite-CDN-DNS-SSL"       # Name for the CloudFront distribution stack
 DYNAMODB_STACK="S3WebSite-DB-Lambda"         # Name for the DynamoDB table stack
 S3_POLICIES_STACK="S3WebSite-BucketPolicies"      # Name for the S3 bucket policies stack
