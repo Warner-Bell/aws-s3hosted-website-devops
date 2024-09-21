@@ -36,9 +36,9 @@ jobs:
         uses: actions/cache@v3  # Use the latest stable version of the cache action
         with:
           path: ~/.npm  # Specify the path to cache
-          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}  # Create a cache key based on OS and package-lock.json
+          key: ${{ runner.OS }}-node20-${{ hashFiles('**/package-lock.json') }}  # Updated cache key for Node.js 20
           restore-keys: |
-            ${{ runner.OS }}-node-  # Fallback to using the latest cache if no exact match is found
+            ${{ runner.OS }}-node20-  # Fallback to using the latest cache if no exact match is found
 
       # Step 4: Install project dependencies
       - name: Install dependencies
@@ -65,5 +65,3 @@ jobs:
             echo "Deployment verification failed"
             exit 1
           fi
-
-      
