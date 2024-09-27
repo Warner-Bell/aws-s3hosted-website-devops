@@ -23,7 +23,7 @@ LOGS_BUCKET_NAME="logs.yoursite.com"       # Name for the bucket to store access
 WEBSITE_DIR="website-prod"
 
 # Domain Configuration
-DOMAIN_NAME="thecontentcaddie.com"            # Your custom domain name (e.g., example.com)
+DOMAIN_NAME="your-domain-name.com"            # Your custom domain name (e.g., example.com)
 HOSTED_ZONE_ID="Z02755292T2THQxxxxx"         # Route 53 Hosted Zone ID for your domain
 
 # Template Paths
