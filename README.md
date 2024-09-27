@@ -25,6 +25,8 @@ Manually or comment-triggered workflow to tear down the website infrastructure.
 
 - **How to Trigger**: You can trigger this workflow through the GitHub Actions tab or by adding a comment like `destroy-site` on a commit and push it to origin.
 
+
+
 ## 🚀 Features
 - Automated deployment to **Amazon S3** using **CloudFormation**.
 - **CloudFront** distribution for fast content delivery.
@@ -78,13 +80,13 @@ You will need a Dev envirionment from which to conduct your DevOps and CI\CD pro
 ### Clone Repo
 Clone the repository:
 
-    ```bash
+    ```
     git clone https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD.git
     ```
 
 Navigate to the project directory:
 
-    ```bash
+    ```
     cd your-repo-name
     ```
 
@@ -101,14 +103,14 @@ Use the included **Demo Site** or add your own website files to the `website-pro
 ### Testing and Deployment
 Test your changes locally. You can use a tool like `http-server` to serve your static files for testing:
 
-    ```bash
+    ```
     npm install -g http-server
     http-server ./website-prod
     ```
 ### Commit Changes
 Commit all the changes you made to the repo.
 
-    ```bash
+    ```
     git commit - m "Your New S3 Website"
     ```
 ### Create Remote Repo
@@ -117,14 +119,14 @@ Create a Remote Copy of your Customized repo on GitHub by editing the `REPO_NAME
 ### push Changes and Deploy Site
 Commit your changes:
 
-    ```bash
+    ```
     git add .
     git commit -m "deploy-site"
     ```
 
 Push your changes to trigger the deploy workflow:
 
-    ```bash
+    ```
     git push origin main
     ```
 
@@ -148,19 +150,19 @@ Contributions, issues, and feature requests are welcome! Here's how you can cont
 
 1. Fork the project:
 
-    ```bash
+    ```
     git checkout -b feature/AmazingFeature
     ```
 
 2. Commit your changes:
 
-    ```bash
+    ```
     git commit -m 'Add some AmazingFeature'
     ```
 
 3. Push to the branch:
 
-    ```bash
+    ```
     git push origin feature/AmazingFeature
     ```
 
