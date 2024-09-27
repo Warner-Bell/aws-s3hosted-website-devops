@@ -88,10 +88,12 @@ Navigate to the project directory:
     cd your-repo-name
     ```
 
-### Edit Credentials File
-Be sure that you updated the configuration file (`config.sh`) with the correct values such as **S3 Bucket Names**, **Domain Name**, **Hosted Zone ID**, and other variables. 
-
+### Edit Config File
+Be sure that you updated the configuration file (`config.sh`) with the correct values such as **S3 Bucket Names**, **Domain Name**, **Hosted Zone ID**, and other variables.
 Update the configuration file with appropriate variables as explained in [CONFIG_SETUP.md](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/f070c8c586f654f576928a14680486e3005c005b/CONFIG_SETUP.md).
+
+### Edit Credentials File
+Locate and edit the `.credential-file` by editing the GitHub token command inputting your GitHun username and Token. The rename the file `.credentials-file.env`
 
 ### Edit website-prod Directory
 Use the included **Demo Site** or add your own website files to the `website-prod` directory. Ensure your file structure aligns with the project setup for smooth deployment.
