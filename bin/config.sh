@@ -42,6 +42,3 @@ CHANGE_SET_NAME="your-set-name-$(date +%Y%m%d%H%M%S)"
 # Timeout for stack update (in seconds)
 STACK_UPDATE_TIMEOUT=900  # 15 minutes
 
-
-# Note: Ensure that SITE_BUCKET_NAME, WWW_BUCKET_NAME, and LOGS_BUCKET_NAME
-# match the corresponding values in your CloudFormation templates
