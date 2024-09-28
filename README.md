@@ -39,13 +39,16 @@ Manually or comment-triggered workflow to tear down the website infrastructure.
 
 ## 📋 Prerequisites
 - **Local Dev Environment** (or Gitpod)
-- **GitHub Account & Access Token** (For Automation)
-- **AWS Account & Permissions** (For Hosting and Deployment)
+- **GitHub Account, Secrets & Access Token** (For Automation)
+- **AWS Account, User & Permissions** (For Hosting and Deployment)
 - **Domain & Hosted Zone** (To Route Your Traffic)
 
 ---
 
 ## 🔧 Configuration Steps
+1. **Set-up AWS User**
+
+2. **Set GitHub Repo Secrets**
 
 1. **Prepare Environment**  
    Set up your local development environment or use a cloud environment like Gitpod. Learn how [HERE!](https://github.com/Warner-Bell/Easy-Dev-Env-Setup/blob/main/README.md)
