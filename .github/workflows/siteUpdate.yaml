@@ -11,6 +11,7 @@ on:
       - 'website-prod/*'  # Only trigger when files in website-prod directory change
 
 # Define environment variables that will be available to all jobs
+
 env:
   AWS_REGION: 'us-east-1'  # Set the AWS region for deployment
   WEBSITE_URL: ${{ secrets.WEBSITE_URL }}  # URL of the website to verify after update
