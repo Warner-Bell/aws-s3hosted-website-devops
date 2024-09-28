@@ -75,14 +75,19 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
-      # Step 3: Invalidate CloudFront Distribution
+      # Step 3: Make The Scripts Executabale
+      - name: Make scripts executable
+        run: |
+          chmod +x ./bin/invalidate-distro.sh
+      
+      # Step 4: Invalidate CloudFront Distribution
       - name: Invalidate CloudFront Distribution
         run: |
           ./bin/invalidate-distro.sh
         env:
           AWS_EC2_METADATA_DISABLED: true
 
-      # Step 4: Verify the CloudFront update
+      # Step 5: Verify the CloudFront update
       - name: Verify CloudFront update
         run: |
           echo "Verifying CloudFront update..."
