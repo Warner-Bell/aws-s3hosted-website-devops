@@ -25,26 +25,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3  # Use the latest stable version of the checkout action
 
-      # Step 2: Set up Node.js environment
-      - name: Setup Node.js
-        uses: actions/setup-node@v3  # Use the latest stable version of the setup-node action
-        with:
-          node-version: '20'  # Use Node.js version 20
 
-      # Step 3: Cache npm dependencies to speed up installation
-      - name: Cache dependencies
-        uses: actions/cache@v3  # Use the latest stable version of the cache action
-        with:
-          path: ~/.npm  # Specify the path to cache
-          key: ${{ runner.OS }}-node20-${{ hashFiles('**/package-lock.json') }}  # Updated cache key for Node.js 20
-          restore-keys: |
-            ${{ runner.OS }}-node20-  # Fallback to using the latest cache if no exact match is found
-
-      # Step 4: Install project dependencies
-      - name: Install dependencies
-        run: npm ci  # Use 'ci' for clean install, respecting package-lock.json
-
-      # Step 5: Build and deploy the site
+      # Step 2: Build and deploy the site
       - name: Build Site
         run: |
           ./bin/website-deploy  # Run your custom deployment script
@@ -54,7 +36,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ env.AWS_REGION }}
 
-      # Step 6: Verify the deployment
+      # Step 3: Verify the deployment
       - name: Verify deployment
         run: |
           # Use the WEBSITE_URL environment variable with a 30-second timeout

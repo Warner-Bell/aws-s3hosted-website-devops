@@ -25,26 +25,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3  # Use the latest stable version of the checkout action
 
-      # Step 2: Set up Node.js environment
-      - name: Setup Node.js
-        uses: actions/setup-node@v3  # Use the latest stable version of the setup-node action
-        with:
-          node-version: '20'  # Use Node.js version 20
-
-      # Step 3: Cache npm dependencies to speed up installation
-      - name: Cache dependencies
-        uses: actions/cache@v3  # Use the latest stable version of the cache action
-        with:
-          path: ~/.npm  # Specify the path to cache
-          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}  # Create a cache key based on OS and package-lock.json
-          restore-keys: |
-            ${{ runner.OS }}-node-  # Fallback to using the latest cache if no exact match is found
-
-      # Step 4: Install project dependencies
-      - name: Install dependencies
-        run: npm ci  # Use 'ci' for clean install, respecting package-lock.json
-
-      # Step 5: Configure AWS credentials securely
+      # Step 2: Configure AWS credentials securely
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2  # Securely configure AWS credentials
         with:
@@ -52,14 +33,14 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
-      # Step 6: Tear Down Site
+      # Step 3: Tear Down Site
       - name: Tear Down Site
         run: |
           echo "Starting site destruction..."
           ./bin/website-destroy  # Run your custom destruction script
           echo "Site destruction complete."
 
-      # Step 7: Verify the destruction
+      # Step 4: Verify the destruction
       - name: Verify destruction
         run: |
           # Use the WEBSITE_URL environment variable with a 30-second timeout
