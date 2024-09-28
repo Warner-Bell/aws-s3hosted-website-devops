@@ -40,6 +40,10 @@ if [ ! -d "$FULL_WEBSITE_PATH" ]; then
     exit 1
 fi
 
+# Perform the S3 sync
+echo "Syncing files to S3 bucket: $SITE_BUCKET_NAME"
+aws s3 sync "$FULL_WEBSITE_PATH" "s3://$SITE_BUCKET_NAME" --delete
+
 echo "S3 sync completed successfully"
 
 # Get the distribution ID based on the domain name
@@ -57,18 +61,16 @@ else
     echo "CloudFront Distribution ID: $DISTRIBUTION_ID"
 
     # Create the invalidation
-    echo "Creating CloudFront invalidation..."
-    aws cloudfront create-invalidation --distribution-id "$DISTRIBUTION_ID" --paths "/*"
+echo "Creating CloudFront invalidation..."
+INVALIDATION_OUTPUT=$(aws cloudfront create-invalidation --distribution-id "$DISTRIBUTION_ID" --paths "/*" --query 'Invalidation.[Id,Status]' --output text)
+
+# Display the essential information
+echo "Invalidation created:"
+echo "$INVALIDATION_OUTPUT" | sed 's/\t/\nStatus: /'
+
+# Exit the script
+exit 0
 
     echo "Invalidation created successfully for distribution associated with $DOMAIN_NAME"
 fi
 
-
-# Print the distribution ID (optional, for verification)
-echo "CloudFront Distribution ID: $DISTRIBUTION_ID"
-
-# Create the invalidation
-echo "Creating CloudFront invalidation..."
-aws cloudfront create-invalidation --distribution-id "$DISTRIBUTION_ID" --paths "/*"
-
-echo "Invalidation created successfully for distribution associated with $DOMAIN_NAME"
