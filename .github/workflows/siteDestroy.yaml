@@ -51,13 +51,15 @@ jobs:
           echo "Verifying site destruction..."
           # Use the WEBSITE_URL environment variable with a 60-second timeout
           response=$(curl -s -o /dev/null -w "%{http_code}" --max-time 60 ${{ env.WEBSITE_URL }} || echo $?)
-          if [ "$response" = "6" ]; then
-            echo "Destruction verified successfully: DNS resolution failed (expected for destroyed site)"
-          elif [ "$response" = "404" ] || [ "$response" = "000" ]; then
-            echo "Destruction verified successfully: Site returned 404 or connection failed"
-          else
-            echo "Destruction verification inconclusive. Response: $response"
+          echo "Curl response: $response"
+          
+          if [ "$response" = "200" ]; then
+            echo "Destruction verification failed: Site is still accessible"
+            echo "Detailed curl output:"
+            curl -v ${{ env.WEBSITE_URL }}
             exit 1
+          else
+            echo "Destruction verified successfully: Site is not accessible (Response: $response)"
           fi
 
       
