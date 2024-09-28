@@ -29,7 +29,7 @@ jobs:
       # Step 2: Build and deploy the site
       - name: Build Site
         run: |
-          ./bin/website-deploy  # Run your custom deployment script
+          ./bin/website-deploy.sh  # Run your custom deployment script
         env:
           # Set AWS credentials as environment variables
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}

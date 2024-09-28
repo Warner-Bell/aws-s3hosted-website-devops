@@ -37,7 +37,7 @@ jobs:
       - name: Tear Down Site
         run: |
           echo "Starting site destruction..."
-          ./bin/website-destroy  # Run your custom destruction script
+          ./bin/website-destroy.sh  # Run your custom destruction script
           echo "Site destruction complete."
 
       # Step 4: Verify the destruction
