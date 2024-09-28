@@ -109,6 +109,8 @@ Manually or comment-triggered workflow to tear down the website infrastructure.
     ```
 
 ---
+https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/main/website-prod/images/S3Website-Diagram.png
+---
 
 ## 📚 Additional Resources
 
