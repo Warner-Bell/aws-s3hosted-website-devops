@@ -109,7 +109,7 @@ Manually or comment-triggered workflow to tear down the website infrastructure.
     ```
 
 ---
-https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/main/website-prod/images/S3Website-Diagram.png
+![image](https://github.com/user-attachments/assets/495294b3-bc81-46dd-91c3-70091b160d1e)
 ---
 
 ## 📚 Additional Resources
