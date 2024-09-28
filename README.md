@@ -144,7 +144,7 @@ Contributions, issues, and feature requests are welcome! Here's how you can cont
     git push origin feature/AmazingFeature
     ```
 
-4. Open a pull request.
+4. Open a pull request:
 
 Feel free to check the [issues page](TBD) for any open issues or feature requests.
 
