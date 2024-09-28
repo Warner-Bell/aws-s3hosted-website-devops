@@ -44,11 +44,29 @@ jobs:
       # Step 4: Verify the deployment
       - name: Verify deployment
         run: |
-          # Use the WEBSITE_URL environment variable with a 60-second timeout
-          response=$(curl -s -o /dev/null -w "%{http_code}" --max-time 60 ${{ env.WEBSITE_URL }})
-          if [ $response = "200" ]; then
+          echo "Waiting for 60 seconds before verification..."
+          sleep 60
+          
+          echo "Verifying deployment at ${{ env.WEBSITE_URL }}"
+          response=$(curl -L -s -o /dev/null -w "%{http_code}" --max-time 60 ${{ env.WEBSITE_URL }})
+          echo "Received HTTP status code: $response"
+          
+          if [ "$response" = "200" ]; then
             echo "Deployment verified successfully"
+          elif [ "$response" = "301" ] || [ "$response" = "302" ]; then
+            echo "Received a redirect. This might be expected if redirecting from HTTP to HTTPS."
+            echo "Following redirect..."
+            final_response=$(curl -L -s -o /dev/null -w "%{http_code}" --max-time 60 ${{ env.WEBSITE_URL }})
+            echo "Final HTTP status code after redirect: $final_response"
+            if [ "$final_response" = "200" ]; then
+              echo "Deployment verified successfully after redirect"
+            else
+              echo "Deployment verification failed after redirect"
+              exit 1
+            fi
           else
             echo "Deployment verification failed"
+            echo "Curl verbose output:"
+            curl -v ${{ env.WEBSITE_URL }}
             exit 1
           fi
