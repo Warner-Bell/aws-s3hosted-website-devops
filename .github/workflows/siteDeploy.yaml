@@ -24,9 +24,14 @@ jobs:
       # Step 1: Check out the repository code
       - name: Checkout repository
         uses: actions/checkout@v3  # Use the latest stable version of the checkout action
+      
+      # Step 2: Make The Scripts Executabale
+      - name: Make scripts executable
+        run: |
+          chmod +x ./bin/website-deploy.sh
+          chmod +x ./bin/s3sync-files.sh
 
-
-      # Step 2: Build and deploy the site
+      # Step 3: Build and deploy the site
       - name: Build Site
         run: |
           ./bin/website-deploy.sh  # Run your custom deployment script
@@ -36,7 +41,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ env.AWS_REGION }}
 
-      # Step 3: Verify the deployment
+      # Step 4: Verify the deployment
       - name: Verify deployment
         run: |
           # Use the WEBSITE_URL environment variable with a 30-second timeout
