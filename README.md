@@ -1,4 +1,4 @@
-![Deploy Site](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/actions/workflows/deploy-site.yml/badge.svg)
+[![Deploy Site](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/actions/workflows/siteDeploy.yaml/badge.svg)](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/actions/workflows/siteDeploy.yaml)
 [![Update Site](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/actions/workflows/siteUpdate.yaml/badge.svg)](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/actions/workflows/siteUpdate.yaml)
 [![Destroy Site](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/actions/workflows/siteDestroy.yaml/badge.svg)](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/actions/workflows/siteDestroy.yaml)
 
