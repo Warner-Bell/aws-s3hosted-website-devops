@@ -15,15 +15,15 @@ S3_POLICIES_STACK="S3WebSite-BucketPolicies"      # Name for the S3 bucket polic
 
 # S3 BucketNames
 CFN_BUCKET="cfmtn-stacks-2025"  # Existing S3 bucket to store CloudFormation templates
-SITE_BUCKET_NAME="thecontyoursite.com"       # Name for the main website content bucket
-WWW_BUCKET_NAME="www.yoursite.com"        # Name for the www subdomain redirect bucket
-LOGS_BUCKET_NAME="logs.yoursite.com"       # Name for the bucket to store access logs
+SITE_BUCKET_NAME="thecontentcaddie.com"       # Name for the main website content bucket
+WWW_BUCKET_NAME="www.thecontentcaddie.com"        # Name for the www subdomain redirect bucket
+LOGS_BUCKET_NAME="logs.thecontentcaddie.com"       # Name for the bucket to store access logs
 
 # S3bucket Website Directory Name
 WEBSITE_DIR="website-prod"
 
 # Domain Configuration
-DOMAIN_NAME="your-domain-name.com"            # Your custom domain name (e.g., example.com)
+DOMAIN_NAME="thecontentcaddie.com"            # Your custom domain name (e.g., example.com)
 HOSTED_ZONE_ID="Z02755292T2THQxxxxx"         # Route 53 Hosted Zone ID for your domain
 
 # Template Paths
@@ -37,7 +37,7 @@ TAG_KEY="Workload"           # Key for resource tagging
 TAG_VALUE="Test-S3Website" # Value for resource tagging
 
 # Generate a unique change set name
-CHANGE_SET_NAME="your-set-name-$(date +%Y%m%d%H%M%S)"
+CHANGE_SET_NAME="S3Ebsitetest1-$(date +%Y%m%d%H%M%S)"
 
 # Timeout for stack update (in seconds)
 STACK_UPDATE_TIMEOUT=900  # 15 minutes
