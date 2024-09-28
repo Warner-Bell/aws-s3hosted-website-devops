@@ -48,7 +48,7 @@ jobs:
       # Step 5: Verify the destruction
       - name: Verify destruction
         run: |
-          # Use the WEBSITE_URL environment variable with a 30-second timeout
+          # Use the WEBSITE_URL environment variable with a 120-second timeout
           response=$(curl -s -o /dev/null -w "%{http_code}" --max-time 120 ${{ env.WEBSITE_URL }})
           if [ "$response" -eq 404 ] || [ "$response" -eq 000 ]; then
             echo "Destruction verified successfully"
