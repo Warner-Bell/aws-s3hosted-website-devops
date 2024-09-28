@@ -27,10 +27,10 @@ DOMAIN_NAME="thecontentcaddie.com"            # Your custom domain name (e.g., e
 HOSTED_ZONE_ID="Z02755292T2THQUPWZK7C"         # Route 53 Hosted Zone ID for your domain
 
 # Template Paths
-S3_BUCKETS_TEMPLATE="${PWD}/cfn/1-s3Buckets.yaml"      # Path to S3 buckets template
+S3_BUCKETS_TEMPLATE="${PWD}/cfn/1-s3buckets.yaml"      # Path to S3 buckets template
 CLOUDFRONT_TEMPLATE="${PWD}/cfn/2-cloudfrnt.yaml"      # Path to CloudFront template
 DYNAMODB_TEMPLATE="${PWD}/cfn/3-dynamodb.yaml"         # Path to DynamoDB template
-S3_POLICIES_TEMPLATE="${PWD}/cfn/4-s3Bucketpolicies.yaml"  # Path to S3 policies template
+S3_POLICIES_TEMPLATE="${PWD}/cfn/4-s3bucketpolicies.yaml"  # Path to S3 policies template
 
 # Tagging
 TAG_KEY="Workload"           # Key for resource tagging
