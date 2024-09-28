@@ -33,14 +33,19 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
-      # Step 3: Tear Down Site
+      # Step 3: Make The Scripts Executabale
+      - name: Make scripts executable
+        run: |
+          chmod +x ./bin/website-destroy.sh
+      
+      # Step 4: Tear Down Site
       - name: Tear Down Site
         run: |
           echo "Starting site destruction..."
           ./bin/website-destroy.sh  # Run your custom destruction script
           echo "Site destruction complete."
 
-      # Step 4: Verify the destruction
+      # Step 5: Verify the destruction
       - name: Verify destruction
         run: |
           # Use the WEBSITE_URL environment variable with a 30-second timeout
