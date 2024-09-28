@@ -47,7 +47,7 @@ Manually or comment-triggered workflow to tear down the website infrastructure.
 
 ## 🔧 Configuration Steps
 1. **Set-up AWS User**
-
+   .
 2. **Set GitHub Repo Secrets**
 
 1. **Prepare Environment**  
