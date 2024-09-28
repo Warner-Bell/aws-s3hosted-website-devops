@@ -48,7 +48,7 @@ Manually or comment-triggered workflow to tear down the website infrastructure.
 ## 🔧 Configuration Steps
 
 1. **Prepare Environment**  
-   Set up your local development environment or use a cloud environment like Gitpod.
+   Set up your local development environment or use a cloud environment like Gitpod. Learn how [HERE!](https://github.com/Warner-Bell/Easy-Dev-Env-Setup/blob/main/README.md)
 
 2. **Clone Repo**  
    Clone the repository:
