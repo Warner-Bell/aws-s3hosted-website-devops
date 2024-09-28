@@ -24,7 +24,7 @@ WEBSITE_DIR="website-prod"
 
 # Domain Configuration
 DOMAIN_NAME="thecontentcaddie.com"            # Your custom domain name (e.g., example.com)
-HOSTED_ZONE_ID="Z02755292T2THQxxxxx"         # Route 53 Hosted Zone ID for your domain
+HOSTED_ZONE_ID="Z02755292T2THQUPWZK7C"         # Route 53 Hosted Zone ID for your domain
 
 # Template Paths
 S3_BUCKETS_TEMPLATE="${PWD}/cfn/1-s3Buckets.yaml"      # Path to S3 buckets template
