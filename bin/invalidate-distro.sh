@@ -22,7 +22,7 @@ fi
 echo "Using domain name: $DOMAIN_NAME"
 
 # Get the distribution ID based on the domain name
-DISTRIBUTION_ID=$(aws cloudfront list-distributions --query "DistributionList.Items[?contains(Aliases.Items, '$DOMAIN_NAME')].Id" --output text)
+DISTRIBUTION_ID=$(aws cloudfront list-distributions --query "DistributionList.Items[?Aliases.Items && contains(Aliases.Items, 'thecontentcaddie.com')].Id" --output text)
 
 # Check if we got a valid distribution ID
 if [ -z "$DISTRIBUTION_ID" ]; then
