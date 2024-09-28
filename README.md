@@ -1,6 +1,6 @@
 ![Deploy Site](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/actions/workflows/deploy-site.yml/badge.svg)
 [![Update Site](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/actions/workflows/siteUpdate.yaml/badge.svg)](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/actions/workflows/siteUpdate.yaml)
-![Destroy Site](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/actions/workflows/destroy-site.yml/badge.svg)
+[![Destroy Site](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/actions/workflows/siteDestroy.yaml/badge.svg)](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/actions/workflows/siteDestroy.yaml)
 
 # 🌐 EASY!!! - `AWS S3-Hosted Website CI/CD` - EASY!!!
 
