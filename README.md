@@ -121,6 +121,7 @@ Also, generate your new access token. Instructions [HERE](GENERATE-GITHUB-TOKEN.
     ```
 
 ---
+## Architecture Diagram
 ![image](https://github.com/user-attachments/assets/495294b3-bc81-46dd-91c3-70091b160d1e)
 ---
 
