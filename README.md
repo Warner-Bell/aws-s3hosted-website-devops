@@ -61,25 +61,25 @@ Before proceeding, ensure you have the following:
 
 2. **Set GitHub Repo Secrets** - 
    In your GitHub account create secrets corresponding to the following;
-   -AWS_ACCESS_KEY_ID - (aws public key)
-   -AWS_SECRET_ACCESS_KEY - (aws secret key)
-   -AWS_S3_BUCKET - (website content bucket name)
-   -WEBSITE_URL - (https://yoursite.com)
-Also, generate your new access token. Instructions [HERE](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/main/docs/GENERATE-GITHUB-TOKEN.md)
+   - AWS_ACCESS_KEY_ID - (aws public key)
+   - AWS_SECRET_ACCESS_KEY - (aws secret key)
+   - AWS_S3_BUCKET - (website content bucket name)
+   - WEBSITE_URL - (https://yoursite.com)
+Also, generate your new access token. **Instructions** [HERE](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/main/docs/GENERATE-GITHUB-TOKEN.md)
 
 3. **Prepare Environment** -
-   Set up your local development environment or use a cloud environment like Gitpod. Learn how [HERE!](https://github.com/Warner-Bell/Easy-Dev-Env-Setup/blob/main/README.md)
+   Set up your local development environment or use a cloud environment like Gitpod. **Learn how** [HERE!](https://github.com/Warner-Bell/Easy-Dev-Env-Setup/blob/main/README.md)
 
 4. **Clone Repo** -  
    Clone the repository:
 
-    ```bash
+    ```
     git clone https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD.git
     ```
 
     Navigate to the project directory:
 
-    ```bash
+    ```
     cd AWS-S3Hosted-Website-CI_CD
     ```
 
@@ -96,7 +96,7 @@ Also, generate your new access token. Instructions [HERE](https://github.com/War
 7. **Edit `website-prod` Directory** -   
    Use the provided **Demo Site** or replace the demo files in the `website-prod` directory with your own HTML, CSS, and JS files. Ensure your file structure aligns with the project setup for smooth deployment.
 
-11. **Test Locally** - (**Optional**)  
+8. **Test Locally** - (**Optional**)  
    Test your changes locally. Use a tool like `http-server` to serve your static files for local testing:
 
     ```
@@ -115,12 +115,18 @@ Also, generate your new access token. Instructions [HERE](https://github.com/War
 10. **Create Remote Repo** -   
     Create a Remote Copy of your customized repository on GitHub by editing the `REPO_NAME=` variable in the [create-remote-repo.sh](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/main/bin/create-remote-repo.sh) file, then run the script.
 
-14. **Push Changes and Deploy Site** - 
+    ```
+    ./bin/create-remote-repo.sh
+    ```
+
+12. **Push Changes and Deploy Site** - 
     Run the following commands to verify up to date and on main:
+    
     ```
     git pull
     git status
-    ``
+    ```
+
     Make any necessary changes to the `website-prod` folder or any of the config files(Be Careful!)
     Commit your changes:
 
@@ -128,7 +134,8 @@ Also, generate your new access token. Instructions [HERE](https://github.com/War
     git add .
     git commit -m "Final Tweaks deploy-site"
     ```
-   Push your changes to trigger the deploy workflow:
+
+    Push your changes to trigger the deploy workflow:
 
     ```
     git push origin main
@@ -158,13 +165,13 @@ Contributions, issues, and feature requests are welcome! Here's how you can cont
 
 1. Fork the project:
 
-    ```bash
+    ```
     git checkout -b feature/AmazingFeature
     ```
 
 2. Commit your changes:
 
-    ```bash
+    ```
     git commit -m 'Add some AmazingFeature'
     ```
 
