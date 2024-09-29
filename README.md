@@ -6,26 +6,26 @@
 
 Want to learn DevOps, IAC, CI\CD, AWS, and GitHub Actions all while building a cool inexpensive website for your brand or business?
 
-This project provides a super easy solution for hosting a static website on Amazon S3, using a DevOps workflow, IaC & GitHub Actions for automated deployment and updates. **All you need is a domain!**
+This project provides a super easy solution for hosting a static website on Amazon S3, using a DevOps workflow, IaC & GitHub Actions for automated deployment and updates. **All you need is a Domain!**
 
-**Note:** *All of the code was created with the assistance of **Amazon Q***
+**Guess What!:** *All of this code was created with the assistance of **Amazon Q** 
 
 ## 🔄 Workflows
 
 ### 🆕 Deploy Site
-Manually triggered or comment-triggered workflow to deploy the website.
+Comment-triggered workflow to deploy the website.
 
-- **How to Trigger**: Trigger this workflow through the GitHub Actions tab or by adding a comment like `deploy-site` on a commit and push it to origin.
+- **How to Trigger**: Trigger this workflow by adding the comment `deploy-site` on a commit and push it to origin.
 
 ### 🔄 Update Site
 Automatically updates the **S3 bucket** and invalidates the **CloudFront distribution** when changes to the `website-prod` directory are pushed to the `main` branch.
 
-- **Note**: Ensure environment variables such as `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and `AWS_REGION` are set in your GitHub repository secrets for proper CI/CD functionality. See [GitHub Secrets Documentation](https://docs.github.com/en/actions/security-guides/encrypted-secrets) for details.
-
 ### 🗑️ Destroy Site
-Manually or comment-triggered workflow to tear down the website infrastructure.
+Comment-triggered workflow to tear down the website infrastructure.
 
-- **How to Trigger**: Trigger this workflow through the GitHub Actions tab or by adding a comment like `destroy-site` on a commit and push it to origin.
+- **How to Trigger**: Trigger this workflow by adding adding the comment `destroy-site` on a commit and push it to origin.
+
+- **Note**: Ensure environment variables such as `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and `AWS_REGION` are set in your GitHub repository secrets for proper CI/CD functionality. See [GitHub Secrets Documentation](https://docs.github.com/en/actions/security-guides/encrypted-secrets) for details.
 
 ---
 
@@ -40,7 +40,7 @@ Manually or comment-triggered workflow to tear down the website infrastructure.
 ---
 
 ## 📋 Prerequisites
-- **Local Dev Environment** (or Gitpod)
+- **Local or cloud Dev Environment** (or Gitpod)
 - **GitHub Account, Secrets & Access Token** (For Automation)
 - **AWS Account, User & Permissions** (For Hosting and Deployment)
 - **Domain & Hosted Zone** (To Route Your Traffic)
@@ -53,7 +53,7 @@ Manually or comment-triggered workflow to tear down the website infrastructure.
    (Third-party service You plan to use this access key to enable access for a third-party application or service that monitors or manages your AWS resources).
    Take note of your new credentials and download the credentials file.
 
-3. **Set GitHub Repo Secrets** - 
+2. **Set GitHub Repo Secrets** - 
    In your GitHub account create secrets corresponding to the following;
    -AWS_ACCESS_KEY_ID
    -AWS_SECRET_ACCESS_KEY
@@ -61,10 +61,10 @@ Manually or comment-triggered workflow to tear down the website infrastructure.
    -WEBSITE_URL
 Also, generate your new access token. Instructions [HERE](GENERATE-GITHUB-TOKEN.md)
 
-5. **Prepare Environment** -
+3. **Prepare Environment** -
    Set up your local development environment or use a cloud environment like Gitpod. Learn how [HERE!](https://github.com/Warner-Bell/Easy-Dev-Env-Setup/blob/main/README.md)
 
-7. **Clone Repo** -  
+4. **Clone Repo** -  
    Clone the repository:
 
     ```bash
@@ -77,17 +77,17 @@ Also, generate your new access token. Instructions [HERE](GENERATE-GITHUB-TOKEN.
     cd AWS-S3Hosted-Website-CI_CD
     ```
 
-8. **Edit Config File** -   
+5. **Edit Config File** -   
    Update the configuration file (`config.sh`) with the correct values such as **S3 Bucket Names**, **Domain Name**, **Hosted Zone ID**, etc.  
    See [CONFIG_SETUP.md](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/f070c8c586f654f576928a14680486e3005c005b/CONFIG_SETUP.md) for detailed instructions.
 
-9. **Edit Credentials File** -   
+6. **Edit Credentials File** -   
    Edit the `.credential-file` to include your GitHub token and username, then rename it to `.credentials-file.env`.
 
-10. **Edit `website-prod` Directory** -   
+7. **Edit `website-prod` Directory** -   
    Use the provided **Demo Site** or replace the demo files in the `website-prod` directory with your own HTML, CSS, and JS files. Ensure your file structure aligns with the project setup for smooth deployment.
 
-11. **Test Locally** -   
+8. **Test Locally** -   
    Test your changes locally. Use a tool like `http-server` to serve your static files for local testing:
 
     ```bash
@@ -95,7 +95,7 @@ Also, generate your new access token. Instructions [HERE](GENERATE-GITHUB-TOKEN.
     http-server ./website-prod
     ```
 
-12. **Commit Changes** -  
+9. **Commit Changes** -  
     Commit all the changes you made to the repository:
 
     ```bash
@@ -103,10 +103,10 @@ Also, generate your new access token. Instructions [HERE](GENERATE-GITHUB-TOKEN.
     git commit -m "Your New S3 Website"
     ```
 
-13. **Create Remote Repo** -   
+10. **Create Remote Repo** -   
     Create a Remote Copy of your customized repository on GitHub by editing the `REPO_NAME=` variable in the [create-remote-repo.sh](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/966af9c5136f472f4341ea60cd545249307d1344/create-remote-repo.sh) file, then run the script.
 
-14. **Push Changes and Deploy Site** -   
+11. **Push Changes and Deploy Site** -   
     Commit your changes:
 
     ```
