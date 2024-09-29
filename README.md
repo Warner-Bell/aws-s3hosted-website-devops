@@ -4,7 +4,9 @@
 
 # 🌐 EASY!!! - `AWS S3-Hosted Website CI/CD` - EASY!!!
 
-This project provides a super easy solution for hosting a static website on Amazon S3, using a DevOps workflow, IaC & GitHub Actions for automated deployment and updates. **All you need is a domain and a hosted zone!**
+Want to learn DevOps, IAC, CI\CD, AWS, and GitHub Actions all while building a cool inexpensive website for your brand or business?
+
+This project provides a super easy solution for hosting a static website on Amazon S3, using a DevOps workflow, IaC & GitHub Actions for automated deployment and updates. **All you need is a domain!**
 
 **Note:** *All of the code was created with the assistance of **Amazon Q***
 
