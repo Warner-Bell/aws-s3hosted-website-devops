@@ -47,13 +47,22 @@ Manually or comment-triggered workflow to tear down the website infrastructure.
 
 ## 🔧 Configuration Steps
 1. **Set-up AWS User**
-   .
-2. **Set GitHub Repo Secrets**
+   In your AWS account create a new user specifically for your S3-Website Project. Create access keys for the user with the following credential type;
+   (Third-party service You plan to use this access key to enable access for a third-party application or service that monitors or manages your AWS resources).
+   Take note of your new credentials and download the credentials file.
 
-1. **Prepare Environment**  
+2. **Set GitHub Repo Secrets**
+In your GitHub account create secrets corresponding to the following;
+   -AWS_ACCESS_KEY_ID
+   -AWS_SECRET_ACCESS_KEY
+   -AWS_S3_BUCKET
+   -WEBSITE_URL
+Also, generate your new access token. Instructions [HERE](GENERATE-GITHUB-TOKEN.md)
+
+3. **Prepare Environment**  
    Set up your local development environment or use a cloud environment like Gitpod. Learn how [HERE!](https://github.com/Warner-Bell/Easy-Dev-Env-Setup/blob/main/README.md)
 
-2. **Clone Repo**  
+4. **Clone Repo**  
    Clone the repository:
 
     ```bash
@@ -66,17 +75,17 @@ Manually or comment-triggered workflow to tear down the website infrastructure.
     cd AWS-S3Hosted-Website-CI_CD
     ```
 
-3. **Edit Config File**  
+5. **Edit Config File**  
    Update the configuration file (`config.sh`) with the correct values such as **S3 Bucket Names**, **Domain Name**, **Hosted Zone ID**, etc.  
    See [CONFIG_SETUP.md](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/f070c8c586f654f576928a14680486e3005c005b/CONFIG_SETUP.md) for detailed instructions.
 
-4. **Edit Credentials File**  
+6. **Edit Credentials File**  
    Edit the `.credential-file` to include your GitHub token and username, then rename it to `.credentials-file.env`.
 
-5. **Edit `website-prod` Directory**  
+7. **Edit `website-prod` Directory**  
    Use the provided **Demo Site** or replace the demo files in the `website-prod` directory with your own HTML, CSS, and JS files. Ensure your file structure aligns with the project setup for smooth deployment.
 
-6. **Test Locally**  
+8. **Test Locally**  
    Test your changes locally. Use a tool like `http-server` to serve your static files for local testing:
 
     ```bash
@@ -84,7 +93,7 @@ Manually or comment-triggered workflow to tear down the website infrastructure.
     http-server ./website-prod
     ```
 
-7. **Commit Changes**  
+9. **Commit Changes**  
    Commit all the changes you made to the repository:
 
     ```bash
@@ -92,10 +101,10 @@ Manually or comment-triggered workflow to tear down the website infrastructure.
     git commit -m "Your New S3 Website"
     ```
 
-8. **Create Remote Repo**  
+10. **Create Remote Repo**  
    Create a Remote Copy of your customized repository on GitHub by editing the `REPO_NAME=` variable in the [create-remote-repo.sh](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/966af9c5136f472f4341ea60cd545249307d1344/create-remote-repo.sh) file, then run the script.
 
-9. **Push Changes and Deploy Site**  
+11. **Push Changes and Deploy Site**  
    Commit your changes:
 
     ```
