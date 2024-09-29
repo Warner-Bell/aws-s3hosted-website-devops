@@ -5,8 +5,7 @@ node_modules
 package.
 package-
 *.priv
-awscliv2.zip/*
-awscliv2.zip
+.zip/*
+*.zip
 aws
 .git-credentials
-awscli-bundle.zip
