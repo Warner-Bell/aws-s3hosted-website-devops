@@ -25,7 +25,7 @@ Comment-triggered workflow to tear down the website infrastructure.
 
 - **How to Trigger**: Trigger this workflow by adding adding the comment `destroy-site` on a commit and push it to origin.
 
-- **Note**: Ensure environment variables such as `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and `AWS_REGION` are set in your GitHub repository secrets for proper CI/CD functionality. See [GitHub Secrets Documentation](https://docs.github.com/en/actions/security-guides/encrypted-secrets){:target="_blank"} for more info.
+- **Note**: Ensure environment variables such as `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and `AWS_REGION` are set in your GitHub repository secrets for proper CI/CD functionality. See <a href="https://docs.github.com/en/actions/security-guides/encrypted-secrets" target="_blank">GitHub Secrets Documentation</a> for more info.
 
 ---
 
@@ -50,10 +50,10 @@ Comment-triggered workflow to tear down the website infrastructure.
 ## 🔧 Configuration Steps
 
 Before proceeding, ensure you have the following:
-- A custom domain name registered and managed through AWS Route 53. and the (Hosted Zone ID) Walkthrough video [HERE](https://youtu.be/QnI_Xevpqts){:target="_blank"}
-- Existing S3 bucket to store CloudFormation templates. [Amazon S3](https://us-east-1.console.aws.amazon.com/s3/buckets){:target="_blank"}
+- A custom domain name registered and managed through AWS Route 53. and the (Hosted Zone ID) Walkthrough video <a href="https://youtu.be/QnI_Xevpqts" target="_blank">HERE</a>
+- Existing S3 bucket to store CloudFormation templates. <a href="https://us-east-1.console.aws.amazon.com/s3/buckets" target="_blank">Amazon S3</a>
 
-1. **Set-up AWS User** -
+1. **Set-up AWS User** - 
    In your AWS account create a new user specifically for your S3-Website Project. Create access keys for the user with the following credential type;
    (Third-party service You plan to use this access key to enable access for a third-party application or service that monitors or manages your AWS resources).
    Take note of your new credentials and download the credentials file.
@@ -65,10 +65,10 @@ Before proceeding, ensure you have the following:
    -AWS_SECRET_ACCESS_KEY - (aws secret key)
    -AWS_S3_BUCKET - (website content bucket name)
    -WEBSITE_URL - (https://yoursite.com)
-Also, generate your new access token. Instructions [HERE](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/main/docs/GENERATE-GITHUB-TOKEN.md){:target="_blank"}
+Also, generate your new access token. Instructions <a href="https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/main/docs/GENERATE-GITHUB-TOKEN.md" target="_blank">HERE</a>
 
-3. **Prepare Environment** -
-   Set up your local development environment or use a cloud environment like Gitpod. Learn how [HERE!](https://github.com/Warner-Bell/Easy-Dev-Env-Setup/blob/main/README.md){:target="_blank"}
+3. **Prepare Environment** - 
+   Set up your local development environment or use a cloud environment like Gitpod. Learn how <a href="https://github.com/Warner-Bell/Easy-Dev-Env-Setup/blob/main/README.md" target="_blank">HERE!</a>
 
 4. **Clone Repo** -  
    Clone the repository:
@@ -85,11 +85,11 @@ Also, generate your new access token. Instructions [HERE](https://github.com/War
 
 5. **Edit Config File** -   
    Update the configuration file (`config.sh`) with the correct values such as **S3 Bucket Names**, **Domain Name**, **Hosted Zone ID**, etc.  
-   See [CONFIG_SETUP.md](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/main/docs/CONFIG_SETUP.md){:target="_blank"} for detailed instructions.
+   See <a href="https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/main/docs/CONFIG_SETUP.md" target="_blank">CONFIG_SETUP.md</a> for detailed instructions.
 
 6. **Edit Credentials File** -   
    Edit the `.credential-file` to include your GitHub token and username, then rename it to `.credentials-file.env`.
-   ```
+   ```bash
    GITHUB_TOKEN=https://**Your GitHub User-Name**:**Your Access Token**@github.com
    ```
 
@@ -99,7 +99,7 @@ Also, generate your new access token. Instructions [HERE](https://github.com/War
 11. **Test Locally** - (**Optional**)  
    Test your changes locally. Use a tool like `http-server` to serve your static files for local testing:
 
-    ```
+    ```bash
     npm install -g http-server
     http-server ./website-prod
     ```
@@ -107,55 +107,60 @@ Also, generate your new access token. Instructions [HERE](https://github.com/War
 9. **Commit Changes** -  
     Commit all the changes you made to the repository:
 
-    ```
+    ```bash
     git add .
     git commit -m "Your New S3 Website"
     ```
 
 10. **Create Remote Repo** -   
-    Create a Remote Copy of your customized repository on GitHub by editing the `REPO_NAME=` variable in the [create-remote-repo.sh](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/966af9c5136f472f4341ea60cd545249307d1344/create-remote-repo.sh){:target="_blank"} file, then run the script.
+    Create a Remote Copy of your customized repository on GitHub by editing the `REPO_NAME=` variable in the <a href="https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/966af9c5136f472f4341ea60cd545249307d1344/create-remote-repo.sh" target="_blank">create-remote-repo.sh</a> file, then run the script.
 
 14. **Push Changes and Deploy Site** - 
     Run the following commands to verify up to date and on main:
-    ```
+    ```bash
     git pull
     git status
-    ``
+    ```
     Make any necessary changes to the `website-prod` folder or any of the config files(Be Careful!)
     Commit your changes:
 
-    ```
+    ```bash
     git add .
     git commit -m "Final Tweaks deploy-site"
     ```
+
    Push your changes to trigger the deploy workflow:
 
-    ```
+    ```bash
     git push origin main
     ```
 
 ---
+
 ## Architecture Diagram
 Here is a visual representation of the architecture being deployed.
 
-![image](https://github.com/user-attachments/assets/495294b3-bc81-46dd-91c3-70091b160d1e){:target="_blank"}
+<a href="https://github.com/user-attachments/assets/495294b3-bc81-46dd-91c3-70091b160d1e" target="_blank"><img src="https://github.com/user-attachments/assets/495294b3-bc81-46dd-91c3-70091b160d1e" alt="Architecture Diagram"></a>
+
 ---
 
 ## 📚 Additional Resources
 
-- [Amazon Q Documentation](https://docs.aws.amazon.com/amazonq/){:target="_blank"}
-- [CloudFormation Documentation](https://docs.aws.amazon.com/cloudformation/){:target="_blank"}
-- [Amazon S3 Documentation](https://docs.aws.amazon.com/s3/){:target="_blank"}
-- [CloudFront Documentation](https://docs.aws.amazon.com/cloudfront/){:target="_blank"}
-- [GitHub Actions Documentation](https://docs.github.com/en/actions){:target="_blank"}
-- [AWS IAM Role Permissions Documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html){:target="_blank"}
-- [Route 53 Hosted Zone Documentation](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html){:target="_blank"}
+- <a href="https://docs.aws.amazon.com/amazonq/" target="_blank">Amazon Q Documentation</a>
+- <a href="https://docs.aws.amazon.com/cloudformation/" target="_blank">CloudFormation Documentation</a>
+- <a href="https://docs.aws.amazon.com/s3/" target="_blank">Amazon S3 Documentation</a>
+- <a href="https://docs.aws.amazon.com/cloudfront/" target="_blank">CloudFront Documentation</a>
+- <a href="https://docs.github.com/en/actions" target="_blank">GitHub Actions Documentation</a>
+- <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html" target="_blank">AWS IAM Role Permissions Documentation</a>
+- <a href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html" target="_blank">Route 53 Hosted Zone Documentation</a>
 
 ---
 
 ## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome! Here's how you can contribute:
+Contributions, issues, and feature
+
+ requests are welcome! Here's how you can contribute:
 
 1. Fork the project:
 
@@ -189,6 +194,6 @@ This project is licensed under the [MIT License](TBD).
 
 ## 📬 Contact
 
-Warner Bell - [Tap In!](https://dot.cards/warnerbell){:target="_blank"}
+Warner Bell - <a href="https://dot.cards/warnerbell" target="_blank">Tap In!</a>
 
-Project Link: [S3-Website](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD){:target="_blank"}
+Project Link: <a href="https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD" target="_blank">S3-Website</a>
