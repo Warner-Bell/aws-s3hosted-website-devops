@@ -42,7 +42,7 @@ Comment-triggered workflow to tear down the website infrastructure.
 ## 📋 Prerequisites
 - **Local or cloud Dev Environment** (or Gitpod)
 - **GitHub Account, Secrets & Access Token** (For Automation)
-- **AWS Account, User & Permissions** (For Hosting and Deployment)
+- **AWS Account, S3Bucket, User & Permissions** (For Hosting and Deployment)
 - **Domain & Hosted Zone** (To Route Your Traffic)
 
 ---
@@ -52,6 +52,7 @@ Comment-triggered workflow to tear down the website infrastructure.
    In your AWS account create a new user specifically for your S3-Website Project. Create access keys for the user with the following credential type;
    (Third-party service You plan to use this access key to enable access for a third-party application or service that monitors or manages your AWS resources).
    Take note of your new credentials and download the credentials file.
+   If you dont already have one, create an S3 bucket specifically to hold CloudFormation templates and take note of the name (any bucket will do)
 
 2. **Set GitHub Repo Secrets** - 
    In your GitHub account create secrets corresponding to the following;
@@ -87,7 +88,7 @@ Also, generate your new access token. Instructions [HERE](GENERATE-GITHUB-TOKEN.
 7. **Edit `website-prod` Directory** -   
    Use the provided **Demo Site** or replace the demo files in the `website-prod` directory with your own HTML, CSS, and JS files. Ensure your file structure aligns with the project setup for smooth deployment.
 
-8. **Test Locally** -   
+11. **Test Locally** -   
    Test your changes locally. Use a tool like `http-server` to serve your static files for local testing:
 
     ```bash
@@ -106,12 +107,12 @@ Also, generate your new access token. Instructions [HERE](GENERATE-GITHUB-TOKEN.
 10. **Create Remote Repo** -   
     Create a Remote Copy of your customized repository on GitHub by editing the `REPO_NAME=` variable in the [create-remote-repo.sh](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/966af9c5136f472f4341ea60cd545249307d1344/create-remote-repo.sh) file, then run the script.
 
-11. **Push Changes and Deploy Site** -   
+14. **Push Changes and Deploy Site** -   
     Commit your changes:
 
     ```
     git add .
-    git commit -m "deploy-site"
+    git commit -m "Final Tweak deploy-site"
     ```
    Push your changes to trigger the deploy workflow:
 

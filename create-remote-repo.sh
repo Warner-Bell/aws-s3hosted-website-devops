@@ -1,20 +1,20 @@
 #!/bin/bash
 
 # Repository name (URL-encoded)
-REPO_NAME="AWS-S3Hosted-Website-CI_CD"
+REPO_NAME="Your-Repo-Name"
 
 # Whether the repository should be private (true/false)
 PRIVATE=true
 
-# Read credentials from .git-credentials file
-if [ ! -f "$HOME/.git-credentials" ]; then
-    echo "Error: .git-credentials file not found in your home directory."
+# Read credentials from .credentials-file
+if [ ! -f "$HOME/.credentials-file" ]; then
+    echo "Error: .credentials-file not found in your home directory."
     exit 1
 fi
 
-CRED_LINE=$(grep 'github.com' "$HOME/.git-credentials")
+CRED_LINE=$(grep 'github.com' "$HOME/.credentials-file")
 if [ -z "$CRED_LINE" ]; then
-    echo "Error: GitHub credentials not found in .git-credentials file."
+    echo "Error: GitHub credentials not found in .credentials-file."
     exit 1
 fi
 
@@ -22,7 +22,7 @@ USERNAME=$(echo "$CRED_LINE" | sed -n 's/https:\/\/\([^:]*\):.*/\1/p')
 TOKEN=$(echo "$CRED_LINE" | sed -n 's/.*:\([^@]*\)@.*/\1/p')
 
 if [ -z "$USERNAME" ] || [ -z "$TOKEN" ]; then
-    echo "Error: Unable to extract username or token from .git-credentials file."
+    echo "Error: Unable to extract username or token from .credentials-file."
     exit 1
 fi
 

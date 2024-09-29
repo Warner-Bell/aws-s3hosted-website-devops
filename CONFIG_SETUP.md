@@ -1,15 +1,13 @@
 # Config Setup Guide
 
-This document explains how to set up and configure the `config.sh` file for deploying an S3-hosted website with CloudFront using CloudFormation templates.
+This document explains how to set up and configure the `config.sh` file for deploying an S3-hosted website
 
 ## Prerequisites
 
 Before proceeding, ensure you have the following:
 
-- An AWS account with proper IAM permissions to create and manage S3, CloudFront, DynamoDB, and Route 53 resources.
-- A custom domain name registered and managed through AWS Route 53.
-- Existing S3 bucket to store CloudFormation templates.
-- Access to CloudFormation templates for the deployment.
+- A custom domain name registered and managed through AWS Route 53. and the (Hosted Zone ID) Walkthrough video [HERE](https://youtu.be/QnI_Xevpqts)
+- Existing S3 bucket to store CloudFormation templates. [Amazon S3](https://us-east-1.console.aws.amazon.com/s3/buckets)
 
 ## How to Use This Guide
 
@@ -31,10 +29,10 @@ The following variables **must** be updated in your `config.sh` file before use.
    - **Action**: Update this value to your desired region if different.
 
 ### 2. **CFN_BUCKET**
-   - **Description**: The name of an existing S3 bucket where CloudFormation templates are stored.
+   - **Description**: The name of an existing S3 bucket where CloudFormation templates are or can be stored.
    - **Example**:
      ```bash
-     CFN_BUCKET="cfmtn-stacks-2025"
+     CFN_BUCKET="cfmtn-stacks-2025" #don't use this example it will fail
      ```
    - **Action**: Replace `cfmtn-stacks-2025` with the name of your CloudFormation template bucket.
 
@@ -42,41 +40,41 @@ The following variables **must** be updated in your `config.sh` file before use.
    - **Description**: The S3 bucket for hosting your website content.
    - **Example**:
      ```bash
-     SITE_BUCKET_NAME="thecontentcaddie.com"
+     SITE_BUCKET_NAME="yourdomainname.com"
      ```
-   - **Action**: Replace `thecontentcaddie.com` with your custom domain name (e.g., `example.com`).
+   - **Action**: Replace `yourdomainname.com` with your custom domain name (e.g., `example.com`).
 
 ### 4. **WWW_BUCKET_NAME**
    - **Description**: The S3 bucket for redirecting `www` subdomain traffic to your primary domain.
    - **Example**:
      ```bash
-     WWW_BUCKET_NAME="www.thecontentcaddie.com"
+     WWW_BUCKET_NAME="www.yourdomainname.com"
      ```
-   - **Action**: Replace `www.thecontentcaddie.com` with the corresponding `www` subdomain for your domain.
+   - **Action**: Replace `yourdomainname` with your custom domain name (e.g., `example.com`).
 
 ### 5. **LOGS_BUCKET_NAME**
    - **Description**: The S3 bucket used to store access logs.
    - **Example**:
      ```bash
-     LOGS_BUCKET_NAME="logs.thecontentcaddie.com"
+     LOGS_BUCKET_NAME="logs.yourdomainname.com"
      ```
-   - **Action**: Replace `logs.thecontentcaddie.com` with the desired name for your logs bucket.
+   - **Action**: Replace `yourdomainname` with your custom domain name.
 
 ### 6. **DOMAIN_NAME**
    - **Description**: The custom domain name to use with your website.
    - **Example**:
      ```bash
-     DOMAIN_NAME="thecontentcaddie.com"
+     DOMAIN_NAME="yourdomainname.com"
      ```
-   - **Action**: Replace `thecontentcaddie.com` with your actual domain name (e.g., `example.com`).
+   - **Action**: Replace `yourdomainname.com` with your actual domain name (e.g., `example.com`).
 
 ### 7. **HOSTED_ZONE_ID**
    - **Description**: The Route 53 Hosted Zone ID for your domain.
    - **Example**:
      ```bash
-     HOSTED_ZONE_ID="Z02755292T2THQUPWZK7C"
+     HOSTED_ZONE_ID="Z02755292T2THQUFHEKHTC"
      ```
-   - **Action**: Replace `Z02755292T2THQUPWZK7C` with your own Route 53 Hosted Zone ID. You can find this ID in the Route 53 console under the Hosted Zones section.
+   - **Action**: Replace `Z02755292T2THQUPWZK7C` with your own Route 53 Hosted Zone ID. You can find this ID in the Route 53 console under the Hosted Zones section. [RT53 Hosted Zones](https://us-east-1.console.aws.amazon.com/route53/v2/hostedzones)
 
 ---
 
@@ -110,7 +108,7 @@ The following variables **must** be updated in your `config.sh` file before use.
    - **Example**:
      ```bash
      TAG_KEY="Workload"
-     TAG_VALUE="Test-S3Website"
+     TAG_VALUE="YourS3Website"
      ```
 
 ### 4. **Change Set Name**
@@ -119,48 +117,3 @@ The following variables **must** be updated in your `config.sh` file before use.
      ```bash
      CHANGE_SET_NAME="S3WebSiteDeploy-$(date +%Y%m%d%H%M%S)"
      ```
-
----
-
-## Complete Example Configuration
-
-Here’s an example of how your `config.sh` file might look after replacing the necessary variables:
-
-```bash
-# AWS Region
-AWS_REGION="us-east-1"
-
-# Stack Names
-S3_BUCKETS_STACK="S3WebSite-Buckets"
-CLOUDFRONT_STACK="S3WebSite-CDN-DNS-SSL"
-DYNAMODB_STACK="S3WebSite-DB-Lambda"
-S3_POLICIES_STACK="S3WebSite-BucketPolicies"
-
-# S3 BucketNames
-CFN_BUCKET="my-cfn-bucket-2024"
-SITE_BUCKET_NAME="mywebsite.com"
-WWW_BUCKET_NAME="www.mywebsite.com"
-LOGS_BUCKET_NAME="logs.mywebsite.com"
-
-# S3bucket Website Directory Name
-WEBSITE_DIR="website-prod"
-
-# Domain Configuration
-DOMAIN_NAME="mywebsite.com"
-HOSTED_ZONE_ID="Z9876543EXAMPLE"
-
-# Template Paths
-S3_BUCKETS_TEMPLATE="${PWD}/cfn/1-s3Buckets.yaml"
-CLOUDFRONT_TEMPLATE="${PWD}/cfn/2-cloudfrnt.yaml"
-DYNAMODB_TEMPLATE="${PWD}/cfn/3-dynamodb.yaml"
-S3_POLICIES_TEMPLATE="${PWD}/cfn/4-s3Bucketpolicies.yaml"
-
-# Tagging
-TAG_KEY="Environment"
-TAG_VALUE="Production"
-
-# Generate a unique change set name
-CHANGE_SET_NAME="S3WebSiteDeploy-$(date +%Y%m%d%H%M%S)"
-
-# Timeout for stack update (in seconds)
-STACK_UPDATE_TIMEOUT=900
