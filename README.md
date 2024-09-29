@@ -192,6 +192,11 @@ Warner Bell - [Tap In!](https://dot.cards/warnerbell)
 
 Project Link: [S3-Website](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD)
 
-## 💚 If you enjoyed this project, consider contributing to keeping them coming!
+## 💚 Enjoyed this project? Help keep them coming!
+
+If you'd like to support future projects, consider contributing:
 
 [![Cash App](https://img.shields.io/badge/Cash_App-$dedprez20-00C244?style=flat&logo=cash-app)](https://cash.app/$dedprez20) 💸
+
+Thanks a ton for your generosity!  
+Your Super Cool Cloud Builder - **Warner Bell**
