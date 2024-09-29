@@ -7,5 +7,4 @@ package-
 *.priv
 .zip/*
 *.zip
-aws
-.git-credentials
+
