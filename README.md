@@ -90,7 +90,7 @@ Also, generate your new access token. Instructions [HERE](https://github.com/War
 6. **Edit Credentials File** -   
    Edit the `.credential-file` to include your GitHub token and username, then rename it to `.credentials-file.env`.
    ```
-   GITHUB_TOKEN=https://**Your GitHub User-Name**:**Your Access Token**@github.com
+   GITHUB_TOKEN=https://Your GitHub User-Name:Your Access Token@github.com
    ```
 
 7. **Edit `website-prod` Directory** -   
@@ -188,6 +188,10 @@ This project is licensed under the [MIT License](TBD).
 
 ## 📬 Contact
 
-Warner Bell - [Tap In!](https://dot.cards/warnerbell) - yo@warnerbell.com
+Warner Bell - [Tap In!](https://dot.cards/warnerbell)
 
 Project Link: [S3-Website](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD)
+
+## 💚 If you enjoyed this project, consider contributing to keeping them coming!
+
+[![Cash App](https://img.shields.io/badge/Cash_App-$dedprez20-00C244?style=flat&logo=cash-app)](https://cash.app/$dedprez20) 💸
