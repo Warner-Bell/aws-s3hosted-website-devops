@@ -113,7 +113,7 @@ Also, generate your new access token. Instructions [HERE](https://github.com/War
     ```
 
 10. **Create Remote Repo** -   
-    Create a Remote Copy of your customized repository on GitHub by editing the `REPO_NAME=` variable in the [create-remote-repo.sh](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/966af9c5136f472f4341ea60cd545249307d1344/create-remote-repo.sh) file, then run the script.
+    Create a Remote Copy of your customized repository on GitHub by editing the `REPO_NAME=` variable in the [create-remote-repo.sh](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/main/bin/create-remote-repo.sh) file, then run the script.
 
 14. **Push Changes and Deploy Site** - 
     Run the following commands to verify up to date and on main:
@@ -196,7 +196,7 @@ Project Link: [S3-Website](https://github.com/Warner-Bell/AWS-S3Hosted-Website-C
 
 If you'd like to support future projects, consider contributing:
 
-[![Cash App](https://img.shields.io/badge/Cash_App-$dedprez20-00C244?style=flat&logo=cash-app)](https://cash.app/$dedprez20) 💸
+[![Cash App](https://img.shields.io/badge/Cash_App-$dedprez20-00C244?style=flat&logo=cash-app)](https://cash.app/$dedprez20)
 
 Thanks a ton for your generosity!  
 Your Super Cool Cloud Builder - **Warner Bell**
