@@ -25,7 +25,7 @@ Comment-triggered workflow to tear down the website infrastructure.
 
 - **How to Trigger**: Trigger this workflow by adding adding the comment `destroy-site` on a commit and push it to origin.
 
-- **Note**: Ensure environment variables such as `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and `AWS_REGION` are set in your GitHub repository secrets for proper CI/CD functionality. See [GitHub Secrets Documentation](https://docs.github.com/en/actions/security-guides/encrypted-secrets) for more info.
+- **Note**: Ensure environment variables such as `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_S3_BUCKET`, `WEBSITE_URL`, and `AWS_REGION` are set in your GitHub repository secrets for proper CI/CD functionality. See [GitHub Secrets Documentation](https://docs.github.com/en/actions/security-guides/encrypted-secrets) for more info.
 
 ---
 
@@ -68,7 +68,7 @@ Before proceeding, ensure you have the following:
 Also, generate your new access token. **Instructions** [HERE](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/main/docs/GENERATE-GITHUB-TOKEN.md)
 
 3. **Prepare Environment** -
-   Set up your local development environment or use a cloud environment like Gitpod. **Learn how** [HERE!](https://github.com/Warner-Bell/Easy-Dev-Env-Setup/blob/main/README.md)
+   Set up your local development environment **Learn how** [HERE!](https://github.com/Warner-Bell/Easy-Dev-Env-Setup/blob/main/README.md), or use a cloud environment like Gitpod.
 
 4. **Clone Repo** -  
    Clone the repository:
