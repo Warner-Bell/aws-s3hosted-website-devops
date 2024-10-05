@@ -3,135 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Cloud-Up Demo Site - Your Builder Demo Site. Specializing in cloud architecture, DevOps automation, and cloud optimization.">
-    <meta name="keywords" content="Cloud Computing, AWS, Azure, Cloud Architecture, DevOps, Cloud Optimization">
-    <title>Cloud-Up Demo Site</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <meta name="description" content="AWS S3-Hosted Website CI/CD - Learn DevOps, IAC, and more while building your portfolio">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AWS S3-Hosted Website CI/CD</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="icon" href="images/favicon.ico">
 </head>
 <body>
     <header>
-        <div class="logo">
-            <img src="../images/cloud_builder_logo.png" alt="Cloud Optimized Labs Logo" aria-label="Cloud Optimized Labs Logo">
-        </div>
         <nav>
-            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation Menu">☰</button>
-            <ul id="menu" role="menu">
-                <li role="none"><a href="index.html" role="menuitem">Home</a></li>
-                <li role="none"><a href="builder-blog.html" target="_blank" role="menuitem">Builder Blog</a></li>
-                <li role="none"><a href="builder-work.html" target="_blank" role="menuitem">Builder Work</a></li>
-                <li role="none"><a href="builder-engagement.html" target="_blank" role="menuitem">Builder Engagement</a></li>
-                <li role="none"><a href="contact.html" target="_blank" role="menuitem">Contact</a></li>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#builder">Showcase</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
-        <section class="hero">
-            <h1>Welcome to Cloud-Up Demo Site Builders!!!</h1>
-            <p>Your on-demand AWS S3-Website Builder.</p>
-            <button aria-label="Learn more about Cloud Optimized Labs">Learn More</button>
-        </section>
-        
-        <section class="interactive-cloud-builder">
-            <div class="cloud-scene">
-                <div class="cloud-builder" aria-label="Cloud Builder Animation"></div>
-                <div class="cloud" aria-label="Moving Cloud Animation"></div>
-                <div class="cloud" aria-label="Moving Cloud Animation"></div>
-                <div class="cloud" aria-label="Moving Cloud Animation"></div>
-            </div>
-        </section>
+    <!-- Landing Page / Hero Section -->
+    <section id="hero" class="section hero">
+        <div class="hero-content">
+            <h1>Welcome to Builder Dave's AWS S3-Hosted Website CI/CD Demo Site!</h1>
+            <p>Learn DevOps, IAC, CI/CD, AWS, and GitHub Actions and more! with Builder Dave, while creating an awesome portfolio website.</p>
+            <a href="#about" class="btn primary-btn">Get Started with Builder Dave</a>
+        </div>
+    </section>
 
-        <section class="services">
-            <h2>Services</h2>
-            <div class="service-card">
-                <h3>Cloud Architecture</h3>
-                <p>Designing scalable, secure cloud solutions on AWS and Azure.</p>
-                <button aria-label="Get started with Cloud Architecture services">Get Started</button>
-            </div>
-            <div class="service-card">
-                <h3>DevOps Automation</h3>
-                <p>Automating cloud infrastructure and CI/CD pipelines.</p>
-                <button aria-label="Learn more about DevOps Automation services">Learn More</button>
-            </div>
-            <div class="service-card">
-                <h3>Cloud Optimization</h3>
-                <p>Enhancing cloud performance and cost efficiency.</p>
-                <button aria-label="Optimize your cloud services">Optimize Now</button>
-            </div>
-        </section>
-        
-        <section class="build-your-cloud">
-            <h2>Build Your Cloud</h2>
-            <div class="cloud-workspace">
-                <div class="cloud-component" id="compute" draggable="true" data-type="compute" aria-label="Drag Compute Component">Compute</div>
-                <div class="cloud-component" id="storage" draggable="true" data-type="storage" aria-label="Drag Storage Component">Storage</div>
-                <div class="cloud-component" id="network" draggable="true" data-type="network" aria-label="Drag Network Component">Network</div>
-                <div class="cloud-dropzone" aria-label="Drop Cloud Components Here">
-                    <p>Drop components here to build your cloud!</p>
-                </div>
-            </div>
-        </section>
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h2>About Builder Dave</h2>
+        <p>Hi, I'm Builder Dave, and I'll be your guide through this project. You’ll learn the skills to automate deployment workflows, use Infrastructure as Code (IaC), and host your own website on AWS S3—all while creating a cool personal website!</p>
+        <img src="images/warner-bell-profile.jpg" alt="Profile of Builder Dave" class="profile-img">
+    </section>
 
-        <section class="about">
-            <h2>About Cloud-Up Demo Site</h2>
-            <p>At Cloud Optimized Labs, we specialize in delivering top-tier cloud solutions tailored to your business needs. With certifications in both AWS and Azure, our expertise spans across cloud architecture, DevOps automation, and cloud optimization. Whether you’re looking to build a robust cloud infrastructure or streamline your operations, we’re here to help you succeed in the cloud.</p>
-            <img src="../images/about_image.png" alt="About Cloud Optimized Labs" loading="lazy">
-        </section>
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <h2>Project Overview</h2>
+        <p>This project shows you how to automate website deployment to AWS S3 using a CI/CD pipeline with GitHub Actions.</p>
+        <img src="images/architecture-diagram.png" alt="Website Architecture Diagram showing CI/CD pipeline" class="architecture-img">
+        <div class="steps">
+            <h3>Steps to Complete</h3>
+            <ul>
+                <li>Set up AWS S3 for website hosting</li>
+                <li>Automate deployment using GitHub Actions</li>
+                <li>Use CloudFormation for IaC</li>
+                <li>Secure your website with CloudFront and SSL</li>
+            </ul>
+        </div>
+    </section>
 
-        <section class="testimonials">
-			<h2>What Our Clients Say</h2>
-			<div class="testimonial-slider">
-				<div class="testimonial-slide active">
-					<p>"Cloud-Up Demo Site transformed our cloud infrastructure completely. Their expertise in AWS and Azure is unmatched, and their ability to deliver on time was impressive. Our systems are now more efficient and scalable than ever before."</p>
-					<span>— Jordan T., CTO at Tech Innovators Inc.</span>
-				</div>
-				<div class="testimonial-slide">
-					<p>"Working with Cloud-Up Demo Site was a game-changer for our DevOps processes. They automated our CI/CD pipelines flawlessly, reducing deployment times by 50%. Their team is professional, knowledgeable, and a pleasure to work with."</p>
-					<span>— Emily R., Lead DevOps Engineer at FastDeploy Ltd.</span>
-				</div>
-				<div class="testimonial-slide">
-					<p>"We were struggling with cloud costs until we partnered with Cloud Optimized Labs. They optimized our cloud environment, saving us 30% on our monthly bills without sacrificing performance. I highly recommend their services to any business looking to maximize their cloud investment."</p>
-					<span>— Michael S., CFO at Green Energy Solutions</span>
-				</div>
-				<div class="testimonial-slide">
-					<p>"The team at Cloud-Up Demo Site went above and beyond to ensure our migration to the cloud was seamless. Their support throughout the process was exceptional, and we felt confident every step of the way. We couldn’t have asked for a better partner."</p>
-					<span>— Sarah L., Operations Manager at RetailNext</span>
-				</div>
-				<div class="testimonial-slide">
-					<p>"Cloud-Up Demo Site not only delivered a robust cloud architecture but also provided ongoing support and optimization. Their proactive approach and deep understanding of cloud technologies have been invaluable to our business."</p>
-					<span>— David W., CEO at InnovateTech</span>
-				</div>
-				<div class="testimonial-slide">
-					<p>"Their cloud optimization services are top-notch! We saw immediate improvements in performance and cost savings. Cloud Optimized Labs is our go-to partner for anything cloud-related."</p>
-					<span>— Lisa P., IT Director at Smart Health Systems</span>
-				</div>
-			</div>
-			<div class="testimonial-controls">
-				<button id="prev-slide" aria-label="Previous Testimonial">‹</button>
-				<button id="next-slide" aria-label="Next Testimonial">›</button>
-			</div>
-		</section>
+    <!-- Builder Showcase -->
+    <section id="builder" class="section">
+        <h2>Builder Dave's Showcase</h2>
+        <p>Check out other projects and portfolio pieces built with Builder Dave’s DevOps principles.</p>
+        <div class="gallery">
+            <div class="project-card">
+                <img src="images/project1.jpg" alt="First featured DevOps project using AWS" class="project-img">
+                <h4>Project Title 1</h4>
+                <p>A cool DevOps project using AWS.</p>
+            </div>
+            <div class="project-card">
+                <img src="images/project2.jpg" alt="Second featured DevOps project using GitHub Actions" class="project-img">
+                <h4>Project Title 2</h4>
+                <p>Automated deployment with GitHub Actions.</p>
+            </div>
+        </div>
+    </section>
 
-    </main>
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+        <h2>Contact Builder Dave (powered by Warner Bell)</h2>
+        <form action="mailto:your-email@example.com" method="POST" enctype="text/plain">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Your Name" required><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Your Email" required><br>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" placeholder="Your Message to Warner"></textarea><br>
+
+            <input type="submit" value="Send Message" class="btn primary-btn">
+        </form>
+    </section>
 
     <footer>
-        <p>&copy; Cloud-Up Demo Site © 2025 by Warner Bell. All rights reserved.</p>
-        <div class="social-media">
-            <a href="#" class="social-icon" aria-label="Facebook">FB</a>
-            <a href="#" class="social-icon" aria-label="Twitter">TW</a>
-            <a href="#" class="social-icon" aria-label="LinkedIn">LN</a>
-        </div>
+        <p>© 2024 AWS S3-Hosted Website CI/CD by Warner Bell.</p>
     </footer>
 
-    <!-- Back-to-Top Button -->
-    <a href="#" class="back-to-top" aria-label="Back to top">↑</a>
-
-    <!-- Lightbox for Gallery -->
-    <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-labelledby="lightbox-img">
-        <span class="close" aria-label="Close Lightbox">&times;</span>
-        <img class="lightbox-content" id="lightbox-img" alt="Lightbox Image">
-    </div>
-
-    <script src="../assets/js/main.js"></script>
+    <script src="assets/java/main.js"></script>
 </body>
 </html>

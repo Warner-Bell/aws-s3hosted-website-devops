@@ -183,7 +183,7 @@ Contributions, issues, and feature requests are welcome! Here's how you can cont
 
 4. Open a pull request:
 
-Feel free to check the [issues page](TBD) for any open issues or feature requests.
+Feel free to check the [issues page](https://github.com/Warner-Bell/aws-s3hosted-website-devops/issues) for any open issues or feature requests.
 
 ---
 

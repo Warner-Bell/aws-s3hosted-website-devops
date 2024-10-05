@@ -1,0 +1,187 @@
+/* Variables for color palette */
+:root {
+    --primary-color: #6e6e6e;
+    --secondary-color: #4d4d4d;
+    --bg-color: #1c1c1c;
+    --text-color: #d3d3d3;
+    --accent-color: #ffffff;
+    --highlight-color: #5cb85c; /* Friendly green color for Builder Dave */
+}
+
+/* Reset browser defaults */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* Section styling */
+.section {
+    padding: 60px 10%;
+}
+
+.hero {
+    height: 100vh;
+    background-color: var(--secondary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--accent-color);
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: var(--highlight-color); /* Friendly green for Builder Dave's persona */
+}
+
+.hero p {
+    font-size: 1.25rem;
+    margin-bottom: 30px;
+}
+
+.primary-btn {
+    background-color: var(--primary-color);
+    color: var(--accent-color);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.primary-btn:hover {
+    background-color: var(--highlight-color); /* Hover effect using the friendly green */
+}
+
+nav {
+    background-color: var(--bg-color);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    padding: 10px;
+    z-index: 100;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: var(--highlight-color);
+}
+
+/* Project Overview Section */
+#projects {
+    padding: 60px 10%;
+    background-color: #c0c0c0; /* Silver background */
+    color: #1c1c1c; /* Dark text color for contrast */
+}
+
+#projects h2 {
+    color: #333333; /* Darker heading for contrast */
+}
+
+#projects p {
+    color: #444444; /* Slightly lighter text color for readability */
+}
+
+#projects ul {
+    list-style: disc;
+    padding-left: 20px;
+    color: #333333;
+}
+
+/* Project Cards */
+.gallery {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.project-card {
+    background-color: var(--secondary-color);
+    width: 45%;
+    margin: 20px 0;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: scale(1.05); /* Adds a hover effect to make cards more interactive */
+}
+
+.project-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+/* Form styling */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form input, form textarea {
+    background-color: var(--bg-color);
+    border: 2px solid var(--primary-color);
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    color: var(--accent-color);
+    transition: border-color 0.3s ease;
+}
+
+form input:focus, form textarea:focus {
+    outline: none;
+    border-color: var(--highlight-color);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--secondary-color);
+    color: var(--accent-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .project-card {
+        width: 100%;
+    }
+
+    .nav-links {
+        flex-direction: column;
+    }
+}
