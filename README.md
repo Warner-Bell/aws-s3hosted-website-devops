@@ -88,7 +88,7 @@ Also, generate your new access token. **Instructions** [HERE](https://github.com
    See [CONFIG_SETUP.md](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/main/docs/CONFIG_SETUP.md) for detailed instructions.
 
 6. **Edit Credentials File** -   
-   Edit the `.credential-file` to include your GitHub token and username, then rename it to `.credentials-file.env`.
+   Edit the `credential-file` to include your GitHub token and username, then rename it to `credentials-file.env`.
    ```
    GITHUB_TOKEN=https://Your GitHub User-Name:Your Access Token@github.com
    ```
@@ -113,9 +113,11 @@ Also, generate your new access token. **Instructions** [HERE](https://github.com
     ```
 
 10. **Create Remote Repo** -   
-    Create a Remote Copy of your customized repository on GitHub by editing the `REPO_NAME=` variable in the [create-remote-repo.sh](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/main/bin/create-remote-repo.sh) file, then run the script.
+    Create a Remote Copy of your customized repository on GitHub by editing the `REPO_NAME=` variable in the [create-remote-repo.sh](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/main/bin/create-remote-repo.sh) file, and if using a Linux machine un-comment the `for linux` command and comment the `for windows` command, then run the script.
 
     ```
+    git add .
+    git commit -m "Your New S3 Website"
     ./bin/create-remote-repo.sh
     ```
 
