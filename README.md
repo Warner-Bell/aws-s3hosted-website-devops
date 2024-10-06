@@ -121,6 +121,19 @@ Before proceeding, ensure you have the following:
    - AWS_SECRET_ACCESS_KEY - (aws secret key)
    - AWS_S3_BUCKET - (website content bucket name)
    - WEBSITE_URL - (https://yoursite.com)
+   ```
+# Add AWS_ACCESS_KEY_ID
+gh secret set AWS_ACCESS_KEY_ID -b"your-aws-access-key-id"
+
+# Add AWS_SECRET_ACCESS_KEY
+gh secret set AWS_SECRET_ACCESS_KEY -b"your-aws-secret-access-key"
+
+# Add AWS_S3_BUCKET
+gh secret set AWS_S3_BUCKET -b"your-s3-bucket-name"
+
+# Add WEBSITE_URL
+gh secret set WEBSITE_URL -b"https://yoursite.com"
+```
 
 12. **Push Changes and Deploy Site** - 
     Run the following commands to verify up to date and on main:
