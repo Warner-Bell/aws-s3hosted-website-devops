@@ -69,6 +69,7 @@ Before proceeding, ensure you have the following:
    Clone the repository:
 
     ```
+    cd Desktop
     git clone https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD.git
     ```
 
