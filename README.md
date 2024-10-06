@@ -59,13 +59,8 @@ Before proceeding, ensure you have the following:
    Take note of your new credentials and download the credentials file.
    If you dont already have one, create an S3 bucket specifically to hold CloudFormation templates and take note of the name (any bucket will do)
 
-2. **Set GitHub Repo Secrets** - 
-   In your GitHub account create secrets corresponding to the following;
-   - AWS_ACCESS_KEY_ID - (aws public key)
-   - AWS_SECRET_ACCESS_KEY - (aws secret key)
-   - AWS_S3_BUCKET - (website content bucket name)
-   - WEBSITE_URL - (https://yoursite.com)
-Also, generate your new access token. **Instructions** [HERE](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/main/docs/GENERATE-GITHUB-TOKEN.md)
+2. **Generate GitHub Repo Token** - 
+   Generate a new Git Hub access token. **Instructions** [HERE](https://github.com/Warner-Bell/AWS-S3Hosted-Website-CI_CD/blob/main/docs/GENERATE-GITHUB-TOKEN.md)
 
 3. **Prepare Environment** -
    Set up your local development environment **Learn how** [HERE!](https://github.com/Warner-Bell/Easy-Dev-Env-Setup/blob/main/README.md), or use a cloud environment like Gitpod.
@@ -120,6 +115,12 @@ Also, generate your new access token. **Instructions** [HERE](https://github.com
     git commit -m "Your New S3 Website"
     ./bin/create-remote-repo.sh
     ```
+11. **Set GitHub Secrets**
+    In your GitHub account create secrets corresponding to the following;
+   - AWS_ACCESS_KEY_ID - (aws public key)
+   - AWS_SECRET_ACCESS_KEY - (aws secret key)
+   - AWS_S3_BUCKET - (website content bucket name)
+   - WEBSITE_URL - (https://yoursite.com)
 
 12. **Push Changes and Deploy Site** - 
     Run the following commands to verify up to date and on main:
